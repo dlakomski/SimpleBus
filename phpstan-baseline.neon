@@ -31,9 +31,9 @@ parameters:
             path: packages/symfony-bridge/src/DependencyInjection/Compiler/RegisterHandlers.php
 
         -
-            message: "#Possibly invalid array key type string\\|null#"
+            message: "#Possibly invalid array key type (class-string|string)\\|null#"
             path: packages/rabbitmq-bundle-bridge/tests/DependencyInjection/Compiler/AdditionalPropertiesResolverPassTest.php
 
         -
-            message: "#Possibly invalid array key type string\\|null#"
+            message: "#Possibly invalid array key type (class-string|string)\\|null#"
             path: packages/symfony-bridge/tests/SymfonyBundle/DependencyInjection/Compiler/ConfigureMiddlewaresTest.php
