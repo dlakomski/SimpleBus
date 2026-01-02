@@ -7,7 +7,7 @@ env:
 
 jobs:
     build-matrix:
-        runs-on: ubuntu-20.04
+        runs-on: ubuntu-22.04
         steps:
             -   uses: actions/checkout@v4
             -   uses: shivammathur/setup-php@2.25.5
@@ -25,7 +25,7 @@ jobs:
             -   id: set-php-version
                 run: echo "php-version=$(vendor/bin/easy-ci php-versions-json)" >> $GITHUB_OUTPUT
             -   id: set-symfony-version
-                run: echo 'symfony-version=["5.4.*", "6.3.*"]' >> $GITHUB_OUTPUT
+                run: echo 'symfony-version=["6.4.*", "7.4.*"]' >> $GITHUB_OUTPUT
         outputs:
             packages: ${{ steps.set-packages.outputs.packages }}
             php-version: ${{ steps.set-php-version.outputs.php-version }}
@@ -33,7 +33,7 @@ jobs:
 
     tests:
         needs: build-matrix
-        runs-on: ubuntu-20.04
+        runs-on: ubuntu-22.04
         strategy:
             fail-fast: false
             matrix:
@@ -47,11 +47,11 @@ jobs:
                 exclude:
                     # Only test once it has no Symfony packages
                     -   package: 'asynchronous'
-                        symfony-version: '5.4.*'
+                        symfony-version: '6.4.*'
                     -   package: 'message-bus'
-                        symfony-version: '5.4.*'
+                        symfony-version: '6.4.*'
                     -   package: 'serialization'
-                        symfony-version: '5.4.*'
+                        symfony-version: '6.4.*'
         services:
             rabbitmq:
                 image: rabbitmq:3.8-alpine
@@ -97,7 +97,7 @@ jobs:
                 working-directory: packages/${{ matrix.package }}
 
     php-cs-fixer:
-        runs-on: ubuntu-20.04
+        runs-on: ubuntu-22.04
         steps:
             -   uses: actions/checkout@v4
             -   uses: shivammathur/setup-php@2.25.5
@@ -115,7 +115,7 @@ jobs:
 
     phpstan:
         needs: build-matrix
-        runs-on: ubuntu-20.04
+        runs-on: ubuntu-22.04
         strategy:
             fail-fast: false
             matrix:

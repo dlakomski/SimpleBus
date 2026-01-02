@@ -1,5 +1,5 @@
 {
-    "name": "simple-bus/doctrine-dbal-bridge",
+    "name": "dlakomski/doctrine-dbal-bridge",
     "type": "library",
     "description": "Bridge for using SimpleBus with Doctrine DBAL",
     "keywords": [
@@ -23,12 +23,12 @@
     "require": {
         "php": "^8.0",
         "doctrine/dbal": "^3.0",
-        "simple-bus/message-bus": "^6.0"
+        "dlakomski/message-bus": "^6.0"
     },
     "require-dev": {
         "ergebnis/composer-normalize": "^2.11",
         "phpunit/phpunit": "^9.5.5",
-        "symfony/phpunit-bridge": "^6.3"
+        "symfony/phpunit-bridge": "^6.3 || ^7.4"
     },
     "config": {
         "sort-packages": true,

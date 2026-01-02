@@ -34,8 +34,7 @@ class NameBasedMessageHandlerResolverTest extends TestCase
 
     private function dummyMessageHandler(): Closure
     {
-        return function () {
-        };
+        return function () {};
     }
 
     private function dummyMessage(): stdClass

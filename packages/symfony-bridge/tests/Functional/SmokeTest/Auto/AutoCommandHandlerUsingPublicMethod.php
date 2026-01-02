@@ -9,7 +9,5 @@ final class AutoCommandHandlerUsingPublicMethod
         $command->setHandled(true);
     }
 
-    public function randomPublicMethod(string $value): void
-    {
-    }
+    public function randomPublicMethod(string $value): void {}
 }

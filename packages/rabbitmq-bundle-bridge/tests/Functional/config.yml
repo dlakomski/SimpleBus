@@ -14,11 +14,6 @@ services:
         class: Symfony\Component\Translation\Translator
         arguments:
             - 'nl'
-
-    # needed to make JMSSerializerBundle work
-    annotation_reader:
-        public: true
-        class: Doctrine\Common\Annotations\AnnotationReader
     
     # needed to make JMSSerializerBundle work
     debug.stopwatch:

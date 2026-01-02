@@ -6,14 +6,10 @@ use JMS\Serializer\Annotation as Serializer;
 
 class SampleMessage
 {
-    /**
-     * @Serializer\Type("string")
-     */
+    #[Serializer\Type('string')]
     private string $foo;
 
-    /**
-     * @Serializer\Type("integer")
-     */
+    #[Serializer\Type('integer')]
     private int $bar;
 
     public function __construct(string $foo, int $bar)

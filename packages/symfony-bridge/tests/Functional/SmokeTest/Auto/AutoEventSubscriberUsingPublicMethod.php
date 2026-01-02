@@ -4,13 +4,9 @@ namespace SimpleBus\SymfonyBridge\Tests\Functional\SmokeTest\Auto;
 
 final class AutoEventSubscriberUsingPublicMethod
 {
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
-    public function __destruct()
-    {
-    }
+    public function __destruct() {}
 
     public function someEventHandler(AutoEvent2 $event): void
     {
@@ -22,7 +18,5 @@ final class AutoEventSubscriberUsingPublicMethod
         $event->setHandledBy($this);
     }
 
-    public function randomPublicMethod(string $value): void
-    {
-    }
+    public function randomPublicMethod(string $value): void {}
 }
