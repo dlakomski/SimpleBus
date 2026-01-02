@@ -70,7 +70,7 @@
         "symfony/process": "^6.3 || ^7.4",
         "symfony/stopwatch": "^6.3 || ^7.4",
         "symfony/translation": "^6.3 || ^7.4",
-        "symplify/monorepo-builder": "^12.4"
+        "symplify/monorepo-builder": "^11.2"
     },
     "config": {
         "sort-packages": true,
