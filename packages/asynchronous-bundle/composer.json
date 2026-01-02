@@ -1,8 +1,13 @@
 {
     "name": "dlakomski/asynchronous-bundle",
-    "type": "symfony-bundle",
     "description": "Symfony bundle for using SimpleBus/Asynchronous",
-    "keywords": ["asynchronous", "message", "message bus", "event bus", "command bus"],
+    "keywords": [
+        "asynchronous",
+        "message",
+        "message bus",
+        "event bus",
+        "command bus"
+    ],
     "homepage": "http://github.com/SimpleBus/AsynchronousBundle",
     "license": "MIT",
     "authors": [
@@ -20,6 +25,7 @@
             "homepage": "http://php-and-symfony.matthiasnoback.nl"
         }
     ],
+    "type": "symfony-bundle",
     "require": {
         "php": "^8.2",
         "dlakomski/asynchronous": "^6.0",
@@ -29,24 +35,12 @@
         "symfony/dependency-injection": "^6.3 || ^7.4",
         "symfony/framework-bundle": "^6.3 || ^7.4"
     },
-    "conflict": {
-        "monolog/monolog": "<1.26.1 || >=2.0,<2.3.0"
-    },
     "require-dev": {
         "ergebnis/composer-normalize": "^2.11",
-        "matthiasnoback/symfony-dependency-injection-test": "^4.3",
-        "phpunit/phpunit": "^9.5.5",
+        "matthiasnoback/symfony-dependency-injection-test": "^6.2",
+        "phpunit/phpunit": "^11.5",
         "symfony/monolog-bundle": "^3.8",
         "symfony/phpunit-bridge": "^6.3 || ^7.4"
-    },
-    "suggest": {
-        "symfony/monolog-bundle": "For logging messages"
-    },
-    "config": {
-        "sort-packages": true,
-        "allow-plugins": {
-            "ergebnis/composer-normalize": true
-        }
     },
     "autoload": {
         "psr-4": {
@@ -57,6 +51,18 @@
         "psr-4": {
             "SimpleBus\\AsynchronousBundle\\Tests\\": "tests"
         }
+    },
+    "suggest": {
+        "symfony/monolog-bundle": "For logging messages"
+    },
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "ergebnis/composer-normalize": true
+        }
+    },
+    "conflict": {
+        "monolog/monolog": "<1.26.1 || >=2.0,<2.3.0"
     },
     "minimum-stability": "dev",
     "prefer-stable": true

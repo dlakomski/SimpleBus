@@ -1,8 +1,11 @@
 {
     "name": "dlakomski/doctrine-orm-bridge",
-    "type": "library",
     "description": "Doctrine ORM bridge for using command and event buses",
-    "keywords": ["Doctrine", "event bus", "command bus"],
+    "keywords": [
+        "Doctrine",
+        "event bus",
+        "command bus"
+    ],
     "homepage": "http://github.com/SimpleBus/DoctrineORMBridge",
     "license": "MIT",
     "authors": [
@@ -20,31 +23,19 @@
             "homepage": "http://php-and-symfony.matthiasnoback.nl"
         }
     ],
+    "type": "library",
     "require": {
         "php": "^8.2",
         "dlakomski/message-bus": "^6.0",
         "doctrine/dbal": "^3.0",
         "doctrine/orm": "^2.15"
     },
-    "conflict": {
-        "doctrine/dbal": "<2.13.3",
-        "doctrine/persistence": "<2.2.2"
-    },
     "require-dev": {
         "ergebnis/composer-normalize": "^2.11",
-        "phpunit/phpunit": "^9.5.5",
+        "phpunit/phpunit": "^11.5",
         "pimple/pimple": "^3.5",
         "symfony/cache": "^6.3 || ^7.4",
         "symfony/phpunit-bridge": "^6.3 || ^7.4"
-    },
-    "suggest": {
-        "dlakomski/symfony-bridge": "Bridge for using command buses and event buses with Symfony"
-    },
-    "config": {
-        "sort-packages": true,
-        "allow-plugins": {
-            "ergebnis/composer-normalize": true
-        }
     },
     "autoload": {
         "psr-4": {
@@ -55,6 +46,19 @@
         "psr-4": {
             "SimpleBus\\DoctrineORMBridge\\Tests\\": "tests"
         }
+    },
+    "suggest": {
+        "dlakomski/symfony-bridge": "Bridge for using command buses and event buses with Symfony"
+    },
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "ergebnis/composer-normalize": true
+        }
+    },
+    "conflict": {
+        "doctrine/dbal": "<2.13.3",
+        "doctrine/persistence": "<2.2.2"
     },
     "minimum-stability": "dev",
     "prefer-stable": true

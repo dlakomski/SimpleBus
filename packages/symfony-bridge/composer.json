@@ -1,8 +1,12 @@
 {
     "name": "dlakomski/symfony-bridge",
-    "type": "symfony-bundle",
     "description": "Bridge for using command buses and event buses in Symfony projects",
-    "keywords": ["Symfony", "Doctrine", "event bus", "command bus"],
+    "keywords": [
+        "Symfony",
+        "Doctrine",
+        "event bus",
+        "command bus"
+    ],
     "homepage": "http://github.com/SimpleBus/SymfonyBridge",
     "license": "MIT",
     "authors": [
@@ -20,6 +24,7 @@
             "homepage": "http://php-and-symfony.matthiasnoback.nl"
         }
     ],
+    "type": "symfony-bundle",
     "require": {
         "php": "^8.2",
         "dlakomski/message-bus": "^6.0",
@@ -28,23 +33,27 @@
         "symfony/http-kernel": "^6.3 || ^7.4",
         "symfony/yaml": "^6.3 || ^7.4"
     },
-    "conflict": {
-        "doctrine/dbal": "<2.13.3",
-        "doctrine/persistence": "<2.2.2",
-        "monolog/monolog": "<1.26.1 || >=2.0,<2.3.0",
-        "zendframework/zend-code": "<3.3.1"
-    },
     "require-dev": {
         "dlakomski/doctrine-orm-bridge": "^6.0",
         "doctrine/doctrine-bundle": "^2.5",
         "doctrine/orm": "^2.15",
         "ergebnis/composer-normalize": "^2.11",
         "laminas/laminas-code": "^4.5",
-        "phpunit/phpunit": "^9.5.5",
+        "phpunit/phpunit": "^11.5",
         "symfony/framework-bundle": "^6.3 || ^7.4",
         "symfony/monolog-bridge": "^6.3 || ^7.4",
         "symfony/monolog-bundle": "^3.8",
         "symfony/phpunit-bridge": "^6.3 || ^7.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "SimpleBus\\SymfonyBridge\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "SimpleBus\\SymfonyBridge\\Tests\\": "tests"
+        }
     },
     "suggest": {
         "doctrine/doctrine-bundle": "For integration with Doctrine ORM",
@@ -58,15 +67,11 @@
             "ergebnis/composer-normalize": true
         }
     },
-    "autoload": {
-        "psr-4": {
-            "SimpleBus\\SymfonyBridge\\": "src"
-        }
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "SimpleBus\\SymfonyBridge\\Tests\\": "tests"
-        }
+    "conflict": {
+        "doctrine/dbal": "<2.13.3",
+        "doctrine/persistence": "<2.2.2",
+        "monolog/monolog": "<1.26.1 || >=2.0,<2.3.0",
+        "zendframework/zend-code": "<3.3.1"
     },
     "minimum-stability": "dev",
     "prefer-stable": true

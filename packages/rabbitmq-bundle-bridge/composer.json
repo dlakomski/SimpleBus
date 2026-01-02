@@ -1,8 +1,13 @@
 {
     "name": "dlakomski/rabbitmq-bundle-bridge",
-    "type": "symfony-bundle",
     "description": "Use OldSoundRabbitMQBundle with SimpleBus/AsynchronousBundle",
-    "keywords": ["RabbitMQ", "messages", "message bus", "event bus", "command bus"],
+    "keywords": [
+        "RabbitMQ",
+        "messages",
+        "message bus",
+        "event bus",
+        "command bus"
+    ],
     "homepage": "http://github.com/SimpleBus/RabbitMQBundleBridge",
     "license": "MIT",
     "authors": [
@@ -20,6 +25,7 @@
             "homepage": "http://php-and-symfony.matthiasnoback.nl"
         }
     ],
+    "type": "symfony-bundle",
     "require": {
         "php": "^8.2",
         "dlakomski/asynchronous": "^6.0",
@@ -29,27 +35,17 @@
         "php-amqplib/rabbitmq-bundle": "^2.11.0",
         "symfony/monolog-bundle": "^3.8"
     },
-    "conflict": {
-        "jms/metadata": "<2.5.2",
-        "monolog/monolog": "<1.26.1 || >=2.0,<2.3.0"
-    },
     "require-dev": {
         "dlakomski/jms-serializer-bundle-bridge": "^6.0",
         "ergebnis/composer-normalize": "^2.11",
         "matthiasnoback/phpunit-asynchronicity": "^2.4",
-        "phpunit/phpunit": "^9.5.5",
+        "phpunit/phpunit": "^11.5",
         "symfony/console": "^6.3 || ^7.4",
         "symfony/finder": "^6.3 || ^7.4",
         "symfony/phpunit-bridge": "^6.3 || ^7.4",
         "symfony/process": "^6.3 || ^7.4",
         "symfony/stopwatch": "^6.3 || ^7.4",
         "symfony/translation": "^6.3 || ^7.4"
-    },
-    "config": {
-        "sort-packages": true,
-        "allow-plugins": {
-            "ergebnis/composer-normalize": true
-        }
     },
     "autoload": {
         "psr-4": {
@@ -60,6 +56,16 @@
         "psr-4": {
             "SimpleBus\\RabbitMQBundleBridge\\Tests\\": "tests"
         }
+    },
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "ergebnis/composer-normalize": true
+        }
+    },
+    "conflict": {
+        "jms/metadata": "<2.5.2",
+        "monolog/monolog": "<1.26.1 || >=2.0,<2.3.0"
     },
     "minimum-stability": "dev",
     "prefer-stable": true

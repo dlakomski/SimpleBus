@@ -1,8 +1,12 @@
 {
     "name": "dlakomski/asynchronous",
-    "type": "library",
     "description": "Generic classes and interfaces for asynchronous messaging using SimpleBus",
-    "keywords": ["asynchronous", "messaging", "command bus", "event bus"],
+    "keywords": [
+        "asynchronous",
+        "messaging",
+        "command bus",
+        "event bus"
+    ],
     "homepage": "http://github.com/SimpleBus/Asynchronous",
     "license": "MIT",
     "authors": [
@@ -20,6 +24,7 @@
             "homepage": "http://php-and-symfony.matthiasnoback.nl"
         }
     ],
+    "type": "library",
     "require": {
         "php": "^8.2",
         "dlakomski/message-bus": "^6.0",
@@ -28,14 +33,8 @@
     },
     "require-dev": {
         "ergebnis/composer-normalize": "^2.11",
-        "phpunit/phpunit": "^9.5.5",
+        "phpunit/phpunit": "^11.5",
         "symfony/phpunit-bridge": "^6.3 || ^7.4"
-    },
-    "config": {
-        "sort-packages": true,
-        "allow-plugins": {
-            "ergebnis/composer-normalize": true
-        }
     },
     "autoload": {
         "psr-4": {
@@ -45,6 +44,12 @@
     "autoload-dev": {
         "psr-4": {
             "SimpleBus\\Asynchronous\\Tests\\": "tests"
+        }
+    },
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "ergebnis/composer-normalize": true
         }
     },
     "minimum-stability": "dev",
