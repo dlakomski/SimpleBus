@@ -101,3 +101,4 @@ simple_bus_rabbit_mq_bundle_bridge:
 
 framework:
     test: true
+    http_method_override: false

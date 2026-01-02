@@ -44,14 +44,7 @@ jobs:
                     - 'lowest'
                     - 'highest'
                 remove-dependencies: [ '' ]
-                exclude:
-                    # Only test once it has no Symfony packages
-                    -   package: 'asynchronous'
-                        symfony-version: '6.4.*'
-                    -   package: 'message-bus'
-                        symfony-version: '6.4.*'
-                    -   package: 'serialization'
-                        symfony-version: '6.4.*'
+
         services:
             rabbitmq:
                 image: rabbitmq:3.8-alpine
