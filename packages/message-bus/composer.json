@@ -2,12 +2,7 @@
     "name": "dlakomski/message-bus",
     "type": "library",
     "description": "Generic classes and interfaces for messages and message buses",
-    "keywords": [
-        "message",
-        "message bus",
-        "event bus",
-        "command bus"
-    ],
+    "keywords": ["message", "message bus", "event bus", "command bus"],
     "homepage": "http://github.com/SimpleBus/MessageBus",
     "license": "MIT",
     "authors": [
@@ -26,7 +21,7 @@
         }
     ],
     "require": {
-        "php": "^8.0",
+        "php": "^8.2",
         "psr/log": "^1.1.4 || ^2.0 || ^3.0"
     },
     "require-dev": {

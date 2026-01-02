@@ -21,7 +21,7 @@
         }
     ],
     "require": {
-        "php": "^8.0",
+        "php": "^8.2",
         "dlakomski/asynchronous": "^6.0",
         "dlakomski/asynchronous-bundle": "^6.0",
         "dlakomski/message-bus": "^6.0",
