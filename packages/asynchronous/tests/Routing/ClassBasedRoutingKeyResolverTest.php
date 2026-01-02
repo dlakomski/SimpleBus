@@ -2,15 +2,14 @@
 
 namespace SimpleBus\Asynchronous\Tests\Routing;
 
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use SimpleBus\Asynchronous\Routing\ClassBasedRoutingKeyResolver;
 use SimpleBus\Asynchronous\Tests\Routing\Fixtures\MessageDummy;
 
 class ClassBasedRoutingKeyResolverTest extends TestCase
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function itReturnsTheFqcnWithDotsInsteadOfBackslashes(): void
     {
         $message = new MessageDummy();

@@ -3,6 +3,7 @@
 namespace SimpleBus\JMSSerializerBridge\Tests\Integration;
 
 use JMS\Serializer\SerializerBuilder;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use SimpleBus\JMSSerializerBridge\JMSSerializerObjectSerializer;
 use SimpleBus\JMSSerializerBridge\SerializerMetadata;
@@ -10,9 +11,7 @@ use SimpleBus\Serialization\Envelope\DefaultEnvelope;
 
 class JMSSerializerObjectSerializerTest extends TestCase
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function itSerializesAndDeserializesMessages(): void
     {
         $format = 'json';

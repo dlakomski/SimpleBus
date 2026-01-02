@@ -2,15 +2,14 @@
 
 namespace SimpleBus\Message\Tests\Recorder;
 
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use SimpleBus\Message\Recorder\PublicMessageRecorder;
 use stdClass;
 
 class PublicMessageRecorderTest extends TestCase
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function itRecordsMessages(): void
     {
         $messageRecorder = new PublicMessageRecorder();
@@ -23,9 +22,7 @@ class PublicMessageRecorderTest extends TestCase
         $this->assertSame([$message1, $message2], $messageRecorder->recordedMessages());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function itErasesMessages(): void
     {
         $messageRecorder = new PublicMessageRecorder();

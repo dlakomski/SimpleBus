@@ -3,6 +3,7 @@
 namespace SimpleBus\Message\Tests\CallableResolver;
 
 use Closure;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use SimpleBus\Message\CallableResolver\Exception\CouldNotResolveCallable;
 use SimpleBus\Message\CallableResolver\ServiceLocatorAwareCallableResolver;
@@ -31,9 +32,7 @@ class ServiceLocatorAwareCallableResolverTest extends TestCase
         $this->resolver = new ServiceLocatorAwareCallableResolver($this->serviceLocator);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function itReturnsAHandlerIfItIsACallable(): void
     {
         $callable = function () {};
@@ -41,9 +40,7 @@ class ServiceLocatorAwareCallableResolverTest extends TestCase
         $this->assertSame($callable, $this->resolver->resolve($callable));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function itReturnsACallableService(): void
     {
         $callable = function () {};
@@ -52,9 +49,7 @@ class ServiceLocatorAwareCallableResolverTest extends TestCase
         $this->assertSame($callable, $this->resolver->resolve('callable_service_id'));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function itReturnsACallableServiceAndMethod(): void
     {
         $callable = function () {};
@@ -63,18 +58,14 @@ class ServiceLocatorAwareCallableResolverTest extends TestCase
         $this->assertSame([$callable, '__invoke'], $this->resolver->resolve(['callable_service_id', '__invoke']));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function itFailsIfObjectAndMethodArrayIsNotACallable(): void
     {
         $this->expectException(CouldNotResolveCallable::class);
         $this->resolver->resolve([new stdClass(), 'nonExistingMethod']);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function itFailsIfTheLoadedServiceIsNotCallable(): void
     {
         $this->services['not_a_callable'] = new stdClass();
@@ -84,9 +75,7 @@ class ServiceLocatorAwareCallableResolverTest extends TestCase
         $this->resolver->resolve('not_a_callable');
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function itFailsIfTheLoadedServiceIsNotCallableDoesNotListChildService(): void
     {
         $handler = new stdClass();
@@ -99,9 +88,7 @@ class ServiceLocatorAwareCallableResolverTest extends TestCase
         $this->resolver->resolve('not_a_callable');
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function itFailsIfTheLoadedServiceAndMethodArrayIsNotCallable(): void
     {
         $this->services['callable_service_id'] = new stdClass();
@@ -113,9 +100,7 @@ class ServiceLocatorAwareCallableResolverTest extends TestCase
         $this->resolver->resolve(['callable_service_id', 'nonExistingMethod']);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function itFailsIfTheLoadedServiceAndMethodArrayIsNotCallableDoesNotListChildService(): void
     {
         $handler = new stdClass();
@@ -130,9 +115,7 @@ class ServiceLocatorAwareCallableResolverTest extends TestCase
         $this->resolver->resolve(['callable_service_id', 'nonExistingMethod']);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function itUsesTheHandleMethodIfItExists(): void
     {
         $legacyHandler = new LegacyHandler();
@@ -140,9 +123,7 @@ class ServiceLocatorAwareCallableResolverTest extends TestCase
         $this->assertSame([$legacyHandler, 'handle'], $this->resolver->resolve($legacyHandler));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function itUsesTheNotifyMethodIfItExists(): void
     {
         $legacySubscriber = new LegacySubscriber();
@@ -150,9 +131,7 @@ class ServiceLocatorAwareCallableResolverTest extends TestCase
         $this->assertSame([$legacySubscriber, 'notify'], $this->resolver->resolve($legacySubscriber));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function itSupportsClassBasedServices(): void
     {
         $subscriber = new SubscriberWithCustomNotify();

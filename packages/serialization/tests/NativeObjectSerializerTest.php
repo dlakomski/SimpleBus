@@ -3,6 +3,7 @@
 namespace SimpleBus\Serialization\Tests;
 
 use LogicException;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use SimpleBus\Serialization\Envelope\DefaultEnvelope;
 use SimpleBus\Serialization\NativeObjectSerializer;
@@ -11,9 +12,7 @@ use SimpleBus\Serialization\Tests\Fixtures\DummyMessage;
 
 class NativeObjectSerializerTest extends TestCase
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function itCanSerializeADefaultMessageEnvelopeWithASerializedMessage(): void
     {
         $envelope = DefaultEnvelope::forSerializedMessage(
@@ -26,9 +25,7 @@ class NativeObjectSerializerTest extends TestCase
         $this->assertIsString($serializedEnvelope);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function itCanSerializeAndDeserializeADefaultMessageEnvelopeWithASerializedMessage(): void
     {
         $originalEnvelope = DefaultEnvelope::forSerializedMessage(
@@ -42,9 +39,7 @@ class NativeObjectSerializerTest extends TestCase
         $this->assertEquals($originalEnvelope, $deserializedEnvelope);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function itFailsWhenTheDeserializedObjectIsOfTheWrongType(): void
     {
         $expectedType = DummyMessage::class;

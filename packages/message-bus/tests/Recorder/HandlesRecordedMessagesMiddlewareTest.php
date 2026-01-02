@@ -3,6 +3,7 @@
 namespace SimpleBus\Message\Tests\Recorder;
 
 use Exception;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use SimpleBus\Message\Bus\MessageBus;
@@ -13,9 +14,7 @@ use stdClass;
 
 class HandlesRecordedMessagesMiddlewareTest extends TestCase
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function itHandlesRecordedMessages(): void
     {
         $messages = [$this->dummyMessage(), $this->dummyMessage()];
@@ -25,7 +24,7 @@ class HandlesRecordedMessagesMiddlewareTest extends TestCase
         $messageRecorder
             ->expects($this->once())
             ->method('recordedMessages')
-            ->will($this->returnValue($messages));
+            ->willReturn($messages);
 
         // then immediately erased
         $messageRecorder
@@ -37,7 +36,7 @@ class HandlesRecordedMessagesMiddlewareTest extends TestCase
         $messageBus = $this->messageBusSpy($actuallyHandledMessages);
         $middleware = new HandlesRecordedMessagesMiddleware(
             $messageRecorder,
-            $messageBus
+            $messageBus,
         );
 
         $next = new CallableSpy();
@@ -47,9 +46,7 @@ class HandlesRecordedMessagesMiddlewareTest extends TestCase
         $this->assertSame($messages, $actuallyHandledMessages);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function itRethrowsACaughtExceptionButFirstClearsAnyRecordedMessages(): void
     {
         $messageRecorder = $this->mockMessageRecorder();
@@ -86,12 +83,10 @@ class HandlesRecordedMessagesMiddlewareTest extends TestCase
         $messageBus
             ->expects($this->any())
             ->method('handle')
-            ->will(
-                $this->returnCallback(
-                    function ($message) use (&$actuallyHandledMessages) {
-                        $actuallyHandledMessages[] = $message;
-                    }
-                )
+            ->willReturnCallback(
+                function ($message) use (&$actuallyHandledMessages) {
+                    $actuallyHandledMessages[] = $message;
+                },
             );
 
         return $messageBus;

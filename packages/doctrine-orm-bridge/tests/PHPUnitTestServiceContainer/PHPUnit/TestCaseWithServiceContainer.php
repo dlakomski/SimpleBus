@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace SimpleBus\DoctrineORMBridge\Tests\PHPUnitTestServiceContainer\PHPUnit;
 
+use PHPUnit\Framework\Attributes\After;
+use PHPUnit\Framework\Attributes\Before;
 use SimpleBus\DoctrineORMBridge\Tests\PHPUnitTestServiceContainer\ServiceContainer;
 use SimpleBus\DoctrineORMBridge\Tests\PHPUnitTestServiceContainer\ServiceProvider;
 
@@ -18,18 +20,14 @@ trait TestCaseWithServiceContainer
 {
     protected ServiceContainer $container;
 
-    /**
-     * @before
-     */
+    #[Before]
     public function setUpContainer(): void
     {
         $this->container = $this->createServiceContainer();
         $this->container->setUp();
     }
 
-    /**
-     * @after
-     */
+    #[After]
     public function tearDownContainer(): void
     {
         if (!isset($this->container)) {

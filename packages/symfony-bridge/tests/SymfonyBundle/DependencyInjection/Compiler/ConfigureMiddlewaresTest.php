@@ -2,6 +2,7 @@
 
 namespace SimpleBus\SymfonyBridge\Tests\SymfonyBundle\DependencyInjection\Compiler;
 
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use SimpleBus\SymfonyBridge\DependencyInjection\Compiler\ConfigureMiddlewares;
 use SimpleBus\SymfonyBridge\Tests\Functional\SmokeTest\Auto\AutoEvent1;
@@ -29,9 +30,7 @@ class ConfigureMiddlewaresTest extends TestCase
         $this->container->addCompilerPass(new ConfigureMiddlewares($this->mainBusId, $this->middlewareTag));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function itConfiguresAChainOfBusesAccordingToTheGivenPriorities(): void
     {
         $classes = [

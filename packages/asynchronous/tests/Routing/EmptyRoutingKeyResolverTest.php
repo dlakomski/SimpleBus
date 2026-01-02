@@ -2,15 +2,14 @@
 
 namespace SimpleBus\Asynchronous\Tests\Routing;
 
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use SimpleBus\Asynchronous\Routing\EmptyRoutingKeyResolver;
 use stdClass;
 
 class EmptyRoutingKeyResolverTest extends TestCase
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function itReturnsAnEmptyRoutingKey(): void
     {
         $resolver = new EmptyRoutingKeyResolver();

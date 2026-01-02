@@ -2,6 +2,7 @@
 
 namespace SimpleBus\Message\Tests\CallableResolver;
 
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use SimpleBus\Message\CallableResolver\CallableMap;
@@ -20,9 +21,7 @@ class CallableMapTest extends TestCase
         $this->callableResolver = $this->createMock(CallableResolver::class);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function itFailsIfNoCallableIsDefinedForAGivenName(): void
     {
         $map = new CallableMap([], $this->callableResolver);
@@ -31,9 +30,7 @@ class CallableMapTest extends TestCase
         $map->get('undefined_name');
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function itReturnsManyResolvedCallablesForAGivenName(): void
     {
         $message1Callable = function () {};
@@ -58,6 +55,6 @@ class CallableMapTest extends TestCase
             ->expects($this->once())
             ->method('resolve')
             ->with($this->identicalTo($callable))
-            ->will($this->returnValue($callable));
+            ->willReturn($callable);
     }
 }

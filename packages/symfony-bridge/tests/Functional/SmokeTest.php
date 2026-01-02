@@ -2,6 +2,7 @@
 
 namespace SimpleBus\SymfonyBridge\Tests\Functional;
 
+use PHPUnit\Framework\Attributes\Test;
 use SimpleBus\Message\Bus\MessageBus;
 use SimpleBus\SymfonyBridge\Tests\Functional\SmokeTest\Auto\AutoCommand1;
 use SimpleBus\SymfonyBridge\Tests\Functional\SmokeTest\Auto\AutoCommand2;
@@ -22,9 +23,7 @@ class SmokeTest extends KernelTestCase
         static::$class = null;
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function itCanAutoRegisterEventSubscribersUsingInvoke(): void
     {
         self::bootKernel(['environment' => 'config2']);
@@ -43,9 +42,7 @@ class SmokeTest extends KernelTestCase
         $this->assertTrue($event->isHandledBy(AutoEventSubscriberUsingInvoke::class));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function itCanAutoRegisterEventSubscribersUsingPublicMethod(): void
     {
         self::bootKernel(['environment' => 'config2']);
@@ -68,9 +65,7 @@ class SmokeTest extends KernelTestCase
         $this->assertTrue($event3->isHandledBy(AutoEventSubscriberUsingPublicMethod::class));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function itCanAutoRegisterCommandHandlersUsingInvoke(): void
     {
         self::bootKernel(['environment' => 'config2']);
@@ -89,9 +84,7 @@ class SmokeTest extends KernelTestCase
         $this->assertTrue($command->isHandled());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function itCanAutoRegisterCommandHandlersUsingPublicMethod(): void
     {
         self::bootKernel(['environment' => 'config2']);

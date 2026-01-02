@@ -2,6 +2,7 @@
 
 namespace SimpleBus\Asynchronous\Tests\Consumer;
 
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use SimpleBus\Asynchronous\Consumer\StandardSerializedEnvelopeConsumer;
@@ -12,9 +13,7 @@ use stdClass;
 
 class StandardSerializedEnvelopeConsumerTest extends TestCase
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function itDeserializesTheEnvelopAndLetsTheMessageBusHandleTheMessage(): void
     {
         $serializedEnvelope = 'serialized envelop';
@@ -27,7 +26,7 @@ class StandardSerializedEnvelopeConsumerTest extends TestCase
             ->expects($this->once())
             ->method('unwrapAndDeserialize')
             ->with($serializedEnvelope)
-            ->will($this->returnValue($envelope));
+            ->willReturn($envelope);
 
         $messageBus = $this->mockMessageBus();
         $messageBus

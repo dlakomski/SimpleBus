@@ -55,12 +55,12 @@
         "doctrine/doctrine-bundle": "^2.5",
         "friendsofphp/php-cs-fixer": "^3.0",
         "matthiasnoback/phpunit-asynchronicity": "^2.4",
-        "matthiasnoback/symfony-dependency-injection-test": "^4.3",
+        "matthiasnoback/symfony-dependency-injection-test": "^6.2",
         "phpstan/extension-installer": "^1.1",
         "phpstan/phpstan": "^1.2",
         "phpstan/phpstan-phpunit": "^1.0",
         "phpstan/phpstan-symfony": "^1.0",
-        "phpunit/phpunit": "^9.5.5",
+        "phpunit/phpunit": "^11.5",
         "pimple/pimple": "^3.5",
         "symfony/cache": "^6.3 || ^7.4",
         "symfony/console": "^6.3 || ^7.4",
@@ -70,7 +70,7 @@
         "symfony/process": "^6.3 || ^7.4",
         "symfony/stopwatch": "^6.3 || ^7.4",
         "symfony/translation": "^6.3 || ^7.4",
-        "symplify/monorepo-builder": "^10.0"
+        "symplify/monorepo-builder": "^12.4"
     },
     "config": {
         "sort-packages": true,

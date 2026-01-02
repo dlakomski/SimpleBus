@@ -4,6 +4,8 @@ namespace SimpleBus\RabbitMQBundleBridge\Tests\Functional;
 
 use Asynchronicity\PHPUnit\Eventually;
 use Generator;
+use PHPUnit\Framework\Attributes\Group;
+use PHPUnit\Framework\Attributes\Test;
 use SimpleBus\Asynchronous\Properties\DelegatingAdditionalPropertiesResolver;
 use SimpleBus\Message\Bus\MessageBus;
 use stdClass;
@@ -55,9 +57,7 @@ class SimpleBusRabbitMQBundleTest extends KernelTestCase
         }
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function itIsAbleToLoadTheBundle(): void
     {
         /*
@@ -68,11 +68,8 @@ class SimpleBusRabbitMQBundleTest extends KernelTestCase
         $this->assertTrue(true);
     }
 
-    /**
-     * @test
-     *
-     * @group functional
-     */
+    #[Test]
+    #[Group('functional')]
     public function itHandlesCommandsAsynchronously(): void
     {
         $this->consumeMessagesFromQueue('asynchronous_commands');
@@ -84,11 +81,8 @@ class SimpleBusRabbitMQBundleTest extends KernelTestCase
         $this->waitUntilLogFileContains('Handling message');
     }
 
-    /**
-     * @test
-     *
-     * @group functional
-     */
+    #[Test]
+    #[Group('functional')]
     public function itHandlesEventsAsynchronously(): void
     {
         $this->consumeMessagesFromQueue('asynchronous_events');
@@ -98,11 +92,8 @@ class SimpleBusRabbitMQBundleTest extends KernelTestCase
         $this->waitUntilLogFileContains('Notified of message');
     }
 
-    /**
-     * @test
-     *
-     * @group functional
-     */
+    #[Test]
+    #[Group('functional')]
     public function itLogsErrors(): void
     {
         $this->consumeMessagesFromQueue('asynchronous_commands');
@@ -112,11 +103,8 @@ class SimpleBusRabbitMQBundleTest extends KernelTestCase
         $this->waitUntilLogFileContains('Failed to handle a message');
     }
 
-    /**
-     * @test
-     *
-     * @group functional
-     */
+    #[Test]
+    #[Group('functional')]
     public function itResolveProperties(): void
     {
         $data = $this->additionalPropertiesResolver()->resolveAdditionalPropertiesFor($this->messageDummy());
@@ -124,11 +112,8 @@ class SimpleBusRabbitMQBundleTest extends KernelTestCase
         $this->assertSame(['debug' => 'string'], $data);
     }
 
-    /**
-     * @test
-     *
-     * @group functional
-     */
+    #[Test]
+    #[Group('functional')]
     public function itSendsPropertiesToProducer(): void
     {
         $container = static::$kernel->getContainer();

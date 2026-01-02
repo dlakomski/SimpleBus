@@ -2,6 +2,7 @@
 
 namespace SimpleBus\Message\Tests\Handler;
 
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use SimpleBus\Message\Handler\DelegatesToMessageHandlerMiddleware;
@@ -11,9 +12,7 @@ use stdClass;
 
 class DelegatesToMessageHandlerMiddlewareTest extends TestCase
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function itResolvesTheMessageHandlerAndLetsItHandleTheMessage(): void
     {
         $message = $this->dummyMessage();
@@ -45,7 +44,7 @@ class DelegatesToMessageHandlerMiddlewareTest extends TestCase
             ->expects($this->once())
             ->method('resolve')
             ->with($this->identicalTo($message))
-            ->will($this->returnValue($resolvedMessageHandler));
+            ->willReturn($resolvedMessageHandler);
 
         return $messageHandlerResolver;
     }

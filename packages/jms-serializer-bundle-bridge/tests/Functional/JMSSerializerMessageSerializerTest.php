@@ -2,6 +2,7 @@
 
 namespace SimpleBus\JMSSerializerBundleBridge\Tests\Functional;
 
+use PHPUnit\Framework\Attributes\Test;
 use SimpleBus\Serialization\Envelope\Serializer\MessageInEnvelopeSerializer;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
@@ -14,9 +15,7 @@ class JMSSerializerMessageSerializerTest extends KernelTestCase
         static::$class = null;
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function itSerializesAndDeserializesMessagesInEnvelopes(): void
     {
         $kernel = $this->createKernel([

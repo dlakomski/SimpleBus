@@ -3,15 +3,14 @@
 namespace Message\Envelope;
 
 use LogicException;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use SimpleBus\Serialization\Envelope\DefaultEnvelope;
 use SimpleBus\Serialization\Tests\Fixtures\DummyMessage;
 
 class DefaultEnvelopeTest extends TestCase
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function itCreatesAnEnvelopeForAMessage(): void
     {
         $message = new DummyMessage();
@@ -23,9 +22,7 @@ class DefaultEnvelopeTest extends TestCase
         $this->assertSame($type, $envelope->messageType());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function itCreatesANewInstanceForADifferentMessage(): void
     {
         $message = new DummyMessage();
@@ -40,9 +37,7 @@ class DefaultEnvelopeTest extends TestCase
         $this->assertSame($type, $newEnvelope->messageType());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function itCreatesANewInstanceForASerializedVersionOfTheMessage(): void
     {
         $message = new DummyMessage();
@@ -58,9 +53,7 @@ class DefaultEnvelopeTest extends TestCase
         $this->assertSame($type, $newEnvelope->messageType());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function itFailsWhenTheSerializedMessageIsUnavailable(): void
     {
         $message = new DummyMessage();
@@ -71,9 +64,7 @@ class DefaultEnvelopeTest extends TestCase
         $envelope->serializedMessage();
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function itFailsWhenTheMessageIsUnavailable(): void
     {
         $envelope = DefaultEnvelope::forSerializedMessage(

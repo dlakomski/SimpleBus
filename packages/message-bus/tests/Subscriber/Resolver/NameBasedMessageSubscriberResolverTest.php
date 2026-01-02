@@ -2,6 +2,7 @@
 
 namespace SimpleBus\Message\Tests\Subscriber\Resolver;
 
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use SimpleBus\Message\CallableResolver\CallableCollection;
@@ -11,9 +12,7 @@ use stdClass;
 
 class NameBasedMessageSubscriberResolverTest extends TestCase
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function itReturnsMessageSubscribersFromTheHandlerCollectionByItsName(): void
     {
         $message = $this->dummyMessage();
@@ -47,7 +46,7 @@ class NameBasedMessageSubscriberResolverTest extends TestCase
             ->expects($this->any())
             ->method('resolve')
             ->with($this->identicalTo($message))
-            ->will($this->returnValue($messageName));
+            ->willReturn($messageName);
 
         return $messageNameResolver;
     }
@@ -66,12 +65,10 @@ class NameBasedMessageSubscriberResolverTest extends TestCase
         $messageSubscribersCollection
             ->expects($this->any())
             ->method('filter')
-            ->will(
-                $this->returnCallback(
-                    function ($messageName) use ($messageSubscribersByMessageName) {
-                        return $messageSubscribersByMessageName[$messageName];
-                    }
-                )
+            ->willReturnCallback(
+                function ($messageName) use ($messageSubscribersByMessageName) {
+                    return $messageSubscribersByMessageName[$messageName];
+                }
             );
 
         return $messageSubscribersCollection;

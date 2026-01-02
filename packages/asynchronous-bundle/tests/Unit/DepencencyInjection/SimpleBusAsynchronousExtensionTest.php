@@ -4,14 +4,13 @@ namespace SimpleBus\AsynchronousBundle\Tests\Unit\DependencyInjection;
 
 use LogicException;
 use Matthias\SymfonyDependencyInjectionTest\PhpUnit\AbstractExtensionTestCase;
+use PHPUnit\Framework\Attributes\Test;
 use SimpleBus\AsynchronousBundle\DependencyInjection\SimpleBusAsynchronousExtension;
 use Symfony\Component\DependencyInjection\Exception\ServiceNotFoundException;
 
 class SimpleBusAsynchronousExtensionTest extends AbstractExtensionTestCase
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function itUsesStrategyAlwaysByDefault(): void
     {
         $this->container->setParameter('kernel.bundles', ['SimpleBusCommandBusBundle' => true, 'SimpleBusEventBusBundle' => true]);
@@ -20,9 +19,7 @@ class SimpleBusAsynchronousExtensionTest extends AbstractExtensionTestCase
         $this->assertContainerBuilderHasServiceDefinitionWithTag('simple_bus.asynchronous.always_publishes_messages_middleware', 'event_bus_middleware', ['priority' => 0]);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function itUsesStrategyPredefinedWhenConfigured(): void
     {
         $this->container->setParameter('kernel.bundles', ['SimpleBusCommandBusBundle' => true, 'SimpleBusEventBusBundle' => true]);
@@ -31,9 +28,7 @@ class SimpleBusAsynchronousExtensionTest extends AbstractExtensionTestCase
         $this->assertContainerBuilderHasServiceDefinitionWithTag('simple_bus.asynchronous.publishes_predefined_messages_middleware', 'event_bus_middleware', ['priority' => 0]);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function itUsesCustomStrategyWhenConfigured(): void
     {
         $this->expectException(ServiceNotFoundException::class);
@@ -43,9 +38,7 @@ class SimpleBusAsynchronousExtensionTest extends AbstractExtensionTestCase
         $this->load(['events' => ['strategy' => ['strategy_service_id' => 'custom_strategy']]]);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function itThrowsExceptionIfCommandBusBundleIsMissing(): void
     {
         $this->expectException(LogicException::class);
@@ -55,9 +48,7 @@ class SimpleBusAsynchronousExtensionTest extends AbstractExtensionTestCase
         $this->load(['events' => ['strategy' => 'predefined']]);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function itThrowsExceptionIfEventBusBundleIsMissing(): void
     {
         $this->expectException(LogicException::class);
