@@ -31,7 +31,7 @@
         "dlakomski/asynchronous": "^6.0",
         "dlakomski/message-bus": "^6.0",
         "dlakomski/symfony-bridge": "^6.0",
-        "symfony/config": "^6.3 || ^7.4",
+        "symfony/config": "^6.3 || ^7.4.1",
         "symfony/dependency-injection": "^6.3 || ^7.4",
         "symfony/framework-bundle": "^6.3 || ^7.4"
     },

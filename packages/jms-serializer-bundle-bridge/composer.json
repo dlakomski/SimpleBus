@@ -29,7 +29,7 @@
         "dlakomski/asynchronous-bundle": "^6.0",
         "dlakomski/jms-serializer-bridge": "^6.0",
         "jms/serializer-bundle": "^5.5",
-        "symfony/config": "^6.3 || ^7.4",
+        "symfony/config": "^6.3 || ^7.4.1",
         "symfony/dependency-injection": "^6.3 || ^7.4",
         "symfony/framework-bundle": "^6.3 || ^7.4"
     },
