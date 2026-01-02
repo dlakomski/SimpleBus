@@ -2,13 +2,7 @@
     "name": "dlakomski/asynchronous-bundle",
     "type": "symfony-bundle",
     "description": "Symfony bundle for using SimpleBus/Asynchronous",
-    "keywords": [
-        "asynchronous",
-        "message",
-        "message bus",
-        "event bus",
-        "command bus"
-    ],
+    "keywords": ["asynchronous", "message", "message bus", "event bus", "command bus"],
     "homepage": "http://github.com/SimpleBus/AsynchronousBundle",
     "license": "MIT",
     "authors": [
@@ -31,9 +25,9 @@
         "dlakomski/asynchronous": "^6.0",
         "dlakomski/message-bus": "^6.0",
         "dlakomski/symfony-bridge": "^6.0",
-        "symfony/config": "^5.4 || ^6.3 || ^7.4",
-        "symfony/dependency-injection": "^5.4 || ^6.3 || ^7.4",
-        "symfony/framework-bundle": "^5.4 || ^6.3 || ^7.4"
+        "symfony/config": "^6.3 || ^7.4",
+        "symfony/dependency-injection": "^6.3 || ^7.4",
+        "symfony/framework-bundle": "^6.3 || ^7.4"
     },
     "conflict": {
         "monolog/monolog": "<1.26.1 || >=2.0,<2.3.0"

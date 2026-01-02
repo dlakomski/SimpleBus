@@ -2,12 +2,7 @@
     "name": "dlakomski/asynchronous",
     "type": "library",
     "description": "Generic classes and interfaces for asynchronous messaging using SimpleBus",
-    "keywords": [
-        "asynchronous",
-        "messaging",
-        "command bus",
-        "event bus"
-    ],
+    "keywords": ["asynchronous", "messaging", "command bus", "event bus"],
     "homepage": "http://github.com/SimpleBus/Asynchronous",
     "license": "MIT",
     "authors": [
@@ -27,14 +22,14 @@
     ],
     "require": {
         "php": "^8.0",
-        "psr/log": "^1.1.4 || ^2.0 || ^3.0",
         "dlakomski/message-bus": "^6.0",
-        "dlakomski/serialization": "^6.0"
+        "dlakomski/serialization": "^6.0",
+        "psr/log": "^1.1.4 || ^2.0 || ^3.0"
     },
     "require-dev": {
         "ergebnis/composer-normalize": "^2.11",
         "phpunit/phpunit": "^9.5.5",
-        "symfony/phpunit-bridge": "^6.3"
+        "symfony/phpunit-bridge": "^6.3 || ^7.4"
     },
     "config": {
         "sort-packages": true,

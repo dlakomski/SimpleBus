@@ -2,11 +2,7 @@
     "name": "dlakomski/doctrine-orm-bridge",
     "type": "library",
     "description": "Doctrine ORM bridge for using command and event buses",
-    "keywords": [
-        "Doctrine",
-        "event bus",
-        "command bus"
-    ],
+    "keywords": ["Doctrine", "event bus", "command bus"],
     "homepage": "http://github.com/SimpleBus/DoctrineORMBridge",
     "license": "MIT",
     "authors": [
@@ -26,9 +22,9 @@
     ],
     "require": {
         "php": "^8.0",
+        "dlakomski/message-bus": "^6.0",
         "doctrine/dbal": "^3.0",
-        "doctrine/orm": "^2.15",
-        "dlakomski/message-bus": "^6.0"
+        "doctrine/orm": "^2.15"
     },
     "conflict": {
         "doctrine/dbal": "<2.13.3",
@@ -38,7 +34,7 @@
         "ergebnis/composer-normalize": "^2.11",
         "phpunit/phpunit": "^9.5.5",
         "pimple/pimple": "^3.5",
-        "symfony/cache": "^5.4 || ^6.3 || ^7.4",
+        "symfony/cache": "^6.3 || ^7.4",
         "symfony/phpunit-bridge": "^6.3 || ^7.4"
     },
     "suggest": {

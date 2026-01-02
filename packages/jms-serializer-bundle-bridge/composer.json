@@ -2,11 +2,7 @@
     "name": "dlakomski/jms-serializer-bundle-bridge",
     "type": "symfony-bundle",
     "description": "Symfony bundle for using JMSSerializer as message serializer for SimpleBus/Asynchronous",
-    "keywords": [
-        "asynchronous",
-        "message",
-        "serializer"
-    ],
+    "keywords": ["asynchronous", "message", "serializer"],
     "homepage": "http://github.com/SimpleBus/JMSSerializerBundleBridge",
     "license": "MIT",
     "authors": [
@@ -26,12 +22,12 @@
     ],
     "require": {
         "php": "^8.0",
-        "jms/serializer-bundle": "^4.0",
         "dlakomski/asynchronous-bundle": "^6.0",
         "dlakomski/jms-serializer-bridge": "^6.0",
-        "symfony/config": "^5.4 || ^6.3 || ^7.4",
-        "symfony/dependency-injection": "^5.4 || ^6.3 || ^7.4",
-        "symfony/framework-bundle": "^5.4 || ^6.3 || ^7.4"
+        "jms/serializer-bundle": "^5.5",
+        "symfony/config": "^6.3 || ^7.4",
+        "symfony/dependency-injection": "^6.3 || ^7.4",
+        "symfony/framework-bundle": "^6.3 || ^7.4"
     },
     "conflict": {
         "doctrine/annotations": "<1.10.4",
