@@ -14,6 +14,9 @@ class Configuration implements ConfigurationInterface
         $this->alias = $alias;
     }
 
+    /**
+     * @return TreeBuilder<'array'>
+     */
     public function getConfigTreeBuilder(): TreeBuilder
     {
         $treeBuilder = new TreeBuilder($this->alias);

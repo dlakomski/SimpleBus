@@ -60,7 +60,7 @@ class AdditionalPropertiesResolverPassTest extends TestCase
 
         foreach ($this->delegatingDefinition->getArgument(0) as $argument) {
             $this->assertInstanceOf(
-                'Symfony\Component\DependencyInjection\Definition',
+                Definition::class,
                 $argument
             );
 
