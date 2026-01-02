@@ -32,7 +32,7 @@ class SimpleBusRabbitMQBundleTest extends KernelTestCase
 
         static::bootKernel();
 
-        $logger = static::$kernel->getContainer()->get('logger');
+        $logger = static::getContainer()->get('logger');
 
         $this->assertInstanceof(FileLogger::class, $logger);
 
@@ -55,17 +55,6 @@ class SimpleBusRabbitMQBundleTest extends KernelTestCase
         if ($this->process instanceof Process) {
             $this->process->stop(2, SIGKILL);
         }
-    }
-
-    #[Test]
-    public function itIsAbleToLoadTheBundle(): void
-    {
-        /*
-         * There's no need to do anything here. This alone will prove that the bundle behaves well,
-         * i.e. its services and configuration can be loaded.
-         */
-
-        $this->assertTrue(true);
     }
 
     #[Test]
@@ -116,7 +105,7 @@ class SimpleBusRabbitMQBundleTest extends KernelTestCase
     #[Group('functional')]
     public function itSendsPropertiesToProducer(): void
     {
-        $container = static::$kernel->getContainer();
+        $container = static::getContainer();
         $container->set('old_sound_rabbit_mq.asynchronous_commands_producer', $container->get('simple_bus.rabbit_mq_bundle_bridge.delegating_additional_properties_resolver.producer_mock'));
 
         $this->commandBus()->handle(new AsynchronousCommand());
@@ -147,7 +136,7 @@ class SimpleBusRabbitMQBundleTest extends KernelTestCase
 
     private function commandBus(): MessageBus
     {
-        $commandBus = static::$kernel->getContainer()->get('command_bus');
+        $commandBus = static::getContainer()->get('command_bus');
 
         $this->assertInstanceOf(MessageBus::class, $commandBus);
 
@@ -156,7 +145,7 @@ class SimpleBusRabbitMQBundleTest extends KernelTestCase
 
     private function eventBus(): MessageBus
     {
-        $eventBus = static::$kernel->getContainer()->get('event_bus');
+        $eventBus = static::getContainer()->get('event_bus');
 
         $this->assertInstanceOf(MessageBus::class, $eventBus);
 
@@ -165,7 +154,7 @@ class SimpleBusRabbitMQBundleTest extends KernelTestCase
 
     private function additionalPropertiesResolver(): DelegatingAdditionalPropertiesResolver
     {
-        $resolver = static::$kernel->getContainer()->get('simple_bus.rabbit_mq_bundle_bridge.delegating_additional_properties_resolver.public');
+        $resolver = static::getContainer()->get('simple_bus.rabbit_mq_bundle_bridge.delegating_additional_properties_resolver.public');
 
         $this->assertInstanceOf(DelegatingAdditionalPropertiesResolver::class, $resolver);
 

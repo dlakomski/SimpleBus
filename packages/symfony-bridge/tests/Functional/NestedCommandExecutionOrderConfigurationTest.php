@@ -24,7 +24,7 @@ final class NestedCommandExecutionOrderConfigurationTest extends KernelTestCase
     public function nestedCommandsAreExecutedSequentiallyByDefault(): void
     {
         self::bootKernel(['environment' => 'config1']);
-        $container = self::$kernel->getContainer();
+        $container = self::getContainer();
 
         $command = new NestedCommand();
 
@@ -54,7 +54,7 @@ final class NestedCommandExecutionOrderConfigurationTest extends KernelTestCase
     public function disablingFinishesCommandBeforeHandlingNextMiddlewareKeepsCommandNesting(): void
     {
         self::bootKernel(['environment' => 'config3']);
-        $container = self::$kernel->getContainer();
+        $container = self::getContainer();
 
         $command = new NestedCommand();
 

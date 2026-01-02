@@ -1,17 +1,31 @@
 parameters:
-	ignoreErrors:
-		-
-			message: "#^Access to an undefined property Doctrine\\\\ORM\\\\Proxy\\\\Proxy&SimpleBus\\\\Message\\\\Recorder\\\\ContainsRecordedMessages\\:\\:\\$__isInitialized__\\.$#"
-			count: 1
-			path: packages/doctrine-orm-bridge/src/EventListener/CollectsEventsFromEntities.php
+    ignoreErrors:
+        -
+            message: "#^Access to an undefined property Doctrine\\\\ORM\\\\Proxy\\\\Proxy&SimpleBus\\\\Message\\\\Recorder\\\\ContainsRecordedMessages\\:\\:\\$__isInitialized__\\.$#"
+            count: 1
+            path: packages/doctrine-orm-bridge/src/EventListener/CollectsEventsFromEntities.php
 
-		-
-			message: "#^Property SimpleBus\\\\DoctrineORMBridge\\\\Tests\\\\EventListener\\\\Fixtures\\\\Entity\\\\EventRecordingEntity\\:\\:\\$id is never written, only read\\.$#"
-			count: 1
-			path: packages/doctrine-orm-bridge/tests/EventListener/Fixtures/Entity/EventRecordingEntity.php
+        -
+            message: "#^Instanceof between Doctrine\\\\ORM\\\\Proxy\\\\Proxy&SimpleBus\\\\Message\\\\Recorder\\\\ContainsRecordedMessages and Doctrine\\\\ORM\\\\Proxy\\\\Proxy will always evaluate to true\\.$#"
+            count: 1
+            path: packages/doctrine-orm-bridge/src/EventListener/CollectsEventsFromEntities.php
 
+        -
+            message: "#^Property SimpleBus\\\\DoctrineORMBridge\\\\Tests\\\\EventListener\\\\Fixtures\\\\Entity\\\\EventRecordingEntity\\:\\:\\$id is never written, only read\\.$#"
+            count: 1
+            path: packages/doctrine-orm-bridge/tests/EventListener/Fixtures/Entity/EventRecordingEntity.php
 
-		-
-			message: "#^Method Symfony\\\\Contracts\\\\EventDispatcher\\\\EventDispatcherInterface\\:\\:dispatch\\(\\) invoked with 2 parameters, 1 required\\.$#"
-			count: 2
-			path: packages/rabbitmq-bundle-bridge/src/RabbitMQMessageConsumer.php
+        -
+            message: "#^Method Symfony\\\\Contracts\\\\EventDispatcher\\\\EventDispatcherInterface\\:\\:dispatch\\(\\) invoked with 2 parameters, 1 required\\.$#"
+            count: 2
+            path: packages/rabbitmq-bundle-bridge/src/RabbitMQMessageConsumer.php
+
+        -
+            message: "#^Call to method Symfony\\\\Component\\\\DependencyInjection\\\\ContainerBuilder\\:\\:has\\(\\) with string will always evaluate to true\\.$#"
+            count: 1
+            path: packages/symfony-bridge/src/DependencyInjection/Compiler/RegisterSubscribers.php
+
+        -
+            message: "#^Call to method Symfony\\\\Component\\\\DependencyInjection\\\\ContainerBuilder\\:\\:has\\(\\) with string will always evaluate to true\\.$#"
+            count: 1
+            path: packages/symfony-bridge/src/DependencyInjection/Compiler/RegisterHandlers.php

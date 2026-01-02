@@ -17,7 +17,6 @@ class DefaultEnvelopeTest extends TestCase
         $type = get_class($message);
 
         $envelope = DefaultEnvelope::forMessage($message);
-        $this->assertInstanceOf(DefaultEnvelope::class, $envelope);
         $this->assertSame($message, $envelope->message());
         $this->assertSame($type, $envelope->messageType());
     }

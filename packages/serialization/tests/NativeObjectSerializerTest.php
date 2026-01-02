@@ -13,19 +13,6 @@ use SimpleBus\Serialization\Tests\Fixtures\DummyMessage;
 class NativeObjectSerializerTest extends TestCase
 {
     #[Test]
-    public function itCanSerializeADefaultMessageEnvelopeWithASerializedMessage(): void
-    {
-        $envelope = DefaultEnvelope::forSerializedMessage(
-            DummyMessage::class,
-            'serialized message'
-        );
-        $serializer = new NativeObjectSerializer();
-
-        $serializedEnvelope = $serializedEnvelope = $serializer->serialize($envelope);
-        $this->assertIsString($serializedEnvelope);
-    }
-
-    #[Test]
     public function itCanSerializeAndDeserializeADefaultMessageEnvelopeWithASerializedMessage(): void
     {
         $originalEnvelope = DefaultEnvelope::forSerializedMessage(
@@ -34,7 +21,7 @@ class NativeObjectSerializerTest extends TestCase
         );
         $serializer = new NativeObjectSerializer();
 
-        $serializedEnvelope = $serializedEnvelope = $serializer->serialize($originalEnvelope);
+        $serializedEnvelope = $serializer->serialize($originalEnvelope);
         $deserializedEnvelope = $serializer->deserialize($serializedEnvelope, get_class($originalEnvelope));
         $this->assertEquals($originalEnvelope, $deserializedEnvelope);
     }

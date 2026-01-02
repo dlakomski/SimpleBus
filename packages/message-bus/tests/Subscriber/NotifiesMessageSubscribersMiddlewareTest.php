@@ -69,6 +69,7 @@ class NotifiesMessageSubscribersMiddlewareTest extends TestCase
                     2 => $this->assertEquals('Finished notifying a subscriber', $logMessage),
                     3 => $this->assertEquals('Started notifying a subscriber', $logMessage),
                     4 => $this->assertEquals('Finished notifying a subscriber', $logMessage),
+                    default => $this->fail('Unexpected number of invocations'),
                 };
             });
 

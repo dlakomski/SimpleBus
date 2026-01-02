@@ -30,7 +30,7 @@ class Php8SmokeTest extends KernelTestCase
     public function itCanAutoRegisterEventSubscribersUsingPublicMethodAndUnion(): void
     {
         self::bootKernel(['environment' => 'config2_php8']);
-        $container = self::$kernel->getContainer();
+        $container = self::getContainer();
 
         $event2 = new AutoEvent2();
         $event3 = new AutoEvent3();

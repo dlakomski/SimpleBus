@@ -6,6 +6,7 @@ framework:
     secret: 'secret'
     http_method_override: false
     handle_all_throwables: true
+    test: true
     php_errors:
         log: true
 

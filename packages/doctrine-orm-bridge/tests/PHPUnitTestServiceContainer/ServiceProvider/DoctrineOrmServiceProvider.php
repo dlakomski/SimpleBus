@@ -83,7 +83,7 @@ class DoctrineOrmServiceProvider implements ServiceProvider
     }
 
     /**
-     * @return array<int, ClassMetadata<object>>
+     * @return list<ClassMetadata<object>>
      */
     private function getClassMetadatas(EntityManager $entityManager): array
     {

@@ -17,7 +17,7 @@ class NameBasedMessageSubscriberResolverTest extends TestCase
     {
         $message = $this->dummyMessage();
         $messageName = 'message_name';
-        $messageHandler = new stdClass();
+        $messageHandler = function () {};
 
         $messageNameResolver = $this->stubMessageNameResolver($message, $messageName);
         $messageHandlerCollection = $this->stubMessageSubscribersCollection([$messageName => [$messageHandler]]);

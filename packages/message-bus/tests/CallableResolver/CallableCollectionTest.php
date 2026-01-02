@@ -54,6 +54,7 @@ class CallableCollectionTest extends TestCase
                 match ($matcher->numberOfInvocations()) {
                     1 => $this->assertEquals($message1Callable1, $callable),
                     2 => $this->assertEquals($message1Callable2, $callable),
+                    default => $this->fail('Unexpected number of invocations'),
                 };
 
                 return $callable;

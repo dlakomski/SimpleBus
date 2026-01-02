@@ -38,7 +38,7 @@ class MessageBusSupportingMiddlewareTest extends TestCase
         $messageBusStack = new MessageBusSupportingMiddleware([]);
         $messageBusStack->handle($message);
 
-        $this->assertTrue(true);
+        $this->expectNotToPerformAssertions();
     }
 
     #[Test]

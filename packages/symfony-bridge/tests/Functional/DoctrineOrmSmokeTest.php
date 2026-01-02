@@ -29,7 +29,7 @@ class DoctrineOrmSmokeTest extends KernelTestCase
     public function itHandlesACommandThenDispatchesEventsForAllModifiedEntities(): void
     {
         self::bootKernel(['environment' => 'config1']);
-        $container = self::$kernel->getContainer();
+        $container = self::getContainer();
 
         $this->createSchema($container);
 
@@ -78,7 +78,7 @@ class DoctrineOrmSmokeTest extends KernelTestCase
         /** @var EntityManager $entityManager */
         $entityManager = $container->get('doctrine.orm.entity_manager');
 
-        /** @var array<int, ClassMetadata<object>> $metadata */
+        /** @var list<ClassMetadata<object>> $metadata */
         $metadata = $entityManager->getMetadataFactory()->getAllMetadata();
 
         $schemaTool = new SchemaTool($entityManager);

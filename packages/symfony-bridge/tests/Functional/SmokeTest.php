@@ -27,7 +27,7 @@ class SmokeTest extends KernelTestCase
     public function itCanAutoRegisterEventSubscribersUsingInvoke(): void
     {
         self::bootKernel(['environment' => 'config2']);
-        $container = self::$kernel->getContainer();
+        $container = self::getContainer();
 
         $event = new AutoEvent1();
 
@@ -46,7 +46,7 @@ class SmokeTest extends KernelTestCase
     public function itCanAutoRegisterEventSubscribersUsingPublicMethod(): void
     {
         self::bootKernel(['environment' => 'config2']);
-        $container = self::$kernel->getContainer();
+        $container = self::getContainer();
 
         $event2 = new AutoEvent2();
         $event3 = new AutoEvent3();
@@ -69,7 +69,7 @@ class SmokeTest extends KernelTestCase
     public function itCanAutoRegisterCommandHandlersUsingInvoke(): void
     {
         self::bootKernel(['environment' => 'config2']);
-        $container = self::$kernel->getContainer();
+        $container = self::getContainer();
 
         $command = new AutoCommand1();
 
@@ -88,7 +88,7 @@ class SmokeTest extends KernelTestCase
     public function itCanAutoRegisterCommandHandlersUsingPublicMethod(): void
     {
         self::bootKernel(['environment' => 'config2']);
-        $container = self::$kernel->getContainer();
+        $container = self::getContainer();
 
         $command = new AutoCommand2();
 
