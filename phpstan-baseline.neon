@@ -11,6 +11,11 @@ parameters:
             path: packages/doctrine-orm-bridge/src/EventListener/CollectsEventsFromEntities.php
 
         -
+            message: "#^Parameter \\#1 \\$classes of method Doctrine\\\\ORM\\\\Tools\\\\SchemaTool\\:\\:(createSchema|dropSchema)\\(\\) expects list<Doctrine\\\\ORM\\\\Mapping\\\\ClassMetadata>, array<int, Doctrine\\\\ORM\\\\Mapping\\\\ClassMetadata<object>> given\\.$#"
+            count: 2
+            path: packages/doctrine-orm-bridge/tests/PHPUnitTestServiceContainer/ServiceProvider/DoctrineOrmServiceProvider.php
+
+        -
             message: "#^Property SimpleBus\\\\DoctrineORMBridge\\\\Tests\\\\EventListener\\\\Fixtures\\\\Entity\\\\EventRecordingEntity\\:\\:\\$id is never written, only read\\.$#"
             count: 1
             path: packages/doctrine-orm-bridge/tests/EventListener/Fixtures/Entity/EventRecordingEntity.php
