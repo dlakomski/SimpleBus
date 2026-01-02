@@ -18,7 +18,7 @@ use SimpleBus\DoctrineORMBridge\Tests\PHPUnitTestServiceContainer\ServiceProvide
  */
 trait TestCaseWithServiceContainer
 {
-    protected ServiceContainer $container;
+    protected ?ServiceContainer $container = null;
 
     #[Before]
     public function setUpContainer(): void
@@ -30,13 +30,12 @@ trait TestCaseWithServiceContainer
     #[After]
     public function tearDownContainer(): void
     {
-        if (!isset($this->container)) {
+        if (null === $this->container) {
             return;
         }
 
         $this->container->tearDown();
-
-        unset($this->container);
+        $this->container = null;
     }
 
     /**
