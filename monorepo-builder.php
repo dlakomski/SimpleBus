@@ -10,7 +10,7 @@ return static function (MBConfig $config): void {
     $config->defaultBranch('main');
     $config->dataToAppend([
         ComposerJsonSection::REQUIRE_DEV => [
-            'phpunit/phpunit' => '^11.5',
+            'phpunit/phpunit' => '^11.5.46',
             'symplify/monorepo-builder' => '^11.2',
         ],
     ]);
