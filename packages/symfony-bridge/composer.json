@@ -39,7 +39,7 @@
         "doctrine/orm": "^2.15",
         "ergebnis/composer-normalize": "^2.11",
         "laminas/laminas-code": "^4.5",
-        "phpunit/phpunit": "^11.5",
+        "phpunit/phpunit": "^11.5.46",
         "symfony/framework-bundle": "^6.3 || ^7.4",
         "symfony/monolog-bridge": "^6.3 || ^7.4",
         "symfony/monolog-bundle": "^3.8",

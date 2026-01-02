@@ -39,7 +39,7 @@
         "dlakomski/jms-serializer-bundle-bridge": "^6.0",
         "ergebnis/composer-normalize": "^2.11",
         "matthiasnoback/phpunit-asynchronicity": "^2.4",
-        "phpunit/phpunit": "^11.5",
+        "phpunit/phpunit": "^11.5.46",
         "symfony/console": "^6.3 || ^7.4",
         "symfony/finder": "^6.3 || ^7.4",
         "symfony/phpunit-bridge": "^6.3 || ^7.4",
