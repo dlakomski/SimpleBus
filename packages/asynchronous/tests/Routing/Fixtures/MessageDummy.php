@@ -2,6 +2,4 @@
 
 namespace SimpleBus\Asynchronous\Tests\Routing\Fixtures;
 
-class MessageDummy
-{
-}
+class MessageDummy {}

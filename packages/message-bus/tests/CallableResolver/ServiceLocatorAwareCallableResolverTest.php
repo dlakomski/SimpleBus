@@ -36,8 +36,7 @@ class ServiceLocatorAwareCallableResolverTest extends TestCase
      */
     public function itReturnsAHandlerIfItIsACallable(): void
     {
-        $callable = function () {
-        };
+        $callable = function () {};
 
         $this->assertSame($callable, $this->resolver->resolve($callable));
     }
@@ -47,8 +46,7 @@ class ServiceLocatorAwareCallableResolverTest extends TestCase
      */
     public function itReturnsACallableService(): void
     {
-        $callable = function () {
-        };
+        $callable = function () {};
         $this->services['callable_service_id'] = $callable;
 
         $this->assertSame($callable, $this->resolver->resolve('callable_service_id'));
@@ -59,8 +57,7 @@ class ServiceLocatorAwareCallableResolverTest extends TestCase
      */
     public function itReturnsACallableServiceAndMethod(): void
     {
-        $callable = function () {
-        };
+        $callable = function () {};
         $this->services['callable_service_id'] = $callable;
 
         $this->assertSame([$callable, '__invoke'], $this->resolver->resolve(['callable_service_id', '__invoke']));

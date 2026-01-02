@@ -18,8 +18,8 @@ class NotifiesMessageSubscribersMiddleware implements MessageBusMiddleware
 
     public function __construct(
         MessageSubscribersResolver $messageSubscribersResolver,
-        LoggerInterface $logger = null,
-        string $level = null
+        ?LoggerInterface $logger = null,
+        ?string $level = null
     ) {
         $this->messageSubscribersResolver = $messageSubscribersResolver;
         $this->logger = $logger ?? new NullLogger();

@@ -2,6 +2,4 @@
 
 namespace SimpleBus\JMSSerializerBridge\Tests\Integration;
 
-class SampleMessage
-{
-}
+class SampleMessage {}

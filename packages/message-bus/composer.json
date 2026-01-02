@@ -1,5 +1,5 @@
 {
-    "name": "simple-bus/message-bus",
+    "name": "dlakomski/message-bus",
     "type": "library",
     "description": "Generic classes and interfaces for messages and message buses",
     "keywords": [
@@ -32,7 +32,7 @@
     "require-dev": {
         "ergebnis/composer-normalize": "^2.11",
         "phpunit/phpunit": "^9.5.5",
-        "symfony/phpunit-bridge": "^6.3"
+        "symfony/phpunit-bridge": "^6.3 || ^7.4"
     },
     "config": {
         "sort-packages": true,

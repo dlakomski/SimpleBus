@@ -1,5 +1,5 @@
 {
-    "name": "simple-bus/asynchronous",
+    "name": "dlakomski/asynchronous",
     "type": "library",
     "description": "Generic classes and interfaces for asynchronous messaging using SimpleBus",
     "keywords": [
@@ -28,8 +28,8 @@
     "require": {
         "php": "^8.0",
         "psr/log": "^1.1.4 || ^2.0 || ^3.0",
-        "simple-bus/message-bus": "^6.0",
-        "simple-bus/serialization": "^6.0"
+        "dlakomski/message-bus": "^6.0",
+        "dlakomski/serialization": "^6.0"
     },
     "require-dev": {
         "ergebnis/composer-normalize": "^2.11",

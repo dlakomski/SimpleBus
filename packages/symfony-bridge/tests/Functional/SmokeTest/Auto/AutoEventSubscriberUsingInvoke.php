@@ -9,7 +9,5 @@ final class AutoEventSubscriberUsingInvoke
         $event->setHandledBy($this);
     }
 
-    public function randomPublicMethod(string $value): void
-    {
-    }
+    public function randomPublicMethod(string $value): void {}
 }

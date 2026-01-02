@@ -36,13 +36,11 @@ class CallableMapTest extends TestCase
      */
     public function itReturnsManyResolvedCallablesForAGivenName(): void
     {
-        $message1Callable = function () {
-        };
+        $message1Callable = function () {};
         $map = new CallableMap(
             [
                 'message1' => $message1Callable,
-                'message2' => function () {
-                },
+                'message2' => function () {},
             ],
             $this->callableResolver
         );

@@ -2,6 +2,4 @@
 
 namespace SimpleBus\AsynchronousBundle\Tests\Functional;
 
-class DummyCommand
-{
-}
+class DummyCommand {}

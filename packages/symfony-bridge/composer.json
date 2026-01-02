@@ -1,5 +1,5 @@
 {
-    "name": "simple-bus/symfony-bridge",
+    "name": "dlakomski/symfony-bridge",
     "type": "symfony-bundle",
     "description": "Bridge for using command buses and event buses in Symfony projects",
     "keywords": [
@@ -27,11 +27,11 @@
     ],
     "require": {
         "php": "^8.0",
-        "simple-bus/message-bus": "^6.0",
-        "symfony/config": "^5.4 || ^6.3",
-        "symfony/dependency-injection": "^5.4 || ^6.3",
-        "symfony/http-kernel": "^5.4 || ^6.3",
-        "symfony/yaml": "^5.4 || ^6.3"
+        "dlakomski/message-bus": "^6.0",
+        "symfony/config": "^5.4 || ^6.3 || ^7.4",
+        "symfony/dependency-injection": "^5.4 || ^6.3 || ^7.4",
+        "symfony/http-kernel": "^5.4 || ^6.3 || ^7.4",
+        "symfony/yaml": "^5.4 || ^6.3 || ^7.4"
     },
     "conflict": {
         "doctrine/dbal": "<2.13.3",
@@ -45,16 +45,16 @@
         "ergebnis/composer-normalize": "^2.11",
         "laminas/laminas-code": "^4.5",
         "phpunit/phpunit": "^9.5.5",
-        "simple-bus/doctrine-orm-bridge": "^6.0",
-        "symfony/framework-bundle": "^5.4 || ^6.3",
-        "symfony/monolog-bridge": "^5.4 || ^6.3",
+        "dlakomski/doctrine-orm-bridge": "^6.0",
+        "symfony/framework-bundle": "^5.4 || ^6.3 || ^7.4",
+        "symfony/monolog-bridge": "^5.4 || ^6.3 || ^7.4",
         "symfony/monolog-bundle": "^3.8",
         "symfony/phpunit-bridge": "^6.3"
     },
     "suggest": {
         "doctrine/doctrine-bundle": "For integration with Doctrine ORM",
         "doctrine/orm": "For integration with Doctrine ORM",
-        "simple-bus/doctrine-orm-bridge": "For integration with Doctrine ORM",
+        "dlakomski/doctrine-orm-bridge": "For integration with Doctrine ORM",
         "symfony/monolog-bundle": "For logging messages"
     },
     "config": {

@@ -2,6 +2,4 @@
 
 namespace SimpleBus\SymfonyBridge\Tests\Functional\SmokeTest;
 
-class TestCommand
-{
-}
+class TestCommand {}

@@ -55,21 +55,6 @@ class WrapsMessageHandlingInTransactionTest extends TestCase
     }
 
     /**
-     * @return array<Throwable[]>
-     */
-    public function errorProvider(): array
-    {
-        return [
-            [
-                new Exception(),
-            ],
-            [
-                new Error(),
-            ],
-        ];
-    }
-
-    /**
      * @test
      *
      * @dataProvider errorProvider
@@ -110,13 +95,27 @@ class WrapsMessageHandlingInTransactionTest extends TestCase
         try {
             $middleware->handle(
                 $message,
-                function () {
-                }
+                function () {}
             );
             $this->fail('An exception should have been thrown');
         } catch (Throwable $actualError) {
             $this->assertSame($error, $actualError);
         }
+    }
+
+    /**
+     * @return array<Throwable[]>
+     */
+    public function errorProvider(): array
+    {
+        return [
+            [
+                new Exception(),
+            ],
+            [
+                new Error(),
+            ],
+        ];
     }
 
     /**
@@ -128,6 +127,4 @@ class WrapsMessageHandlingInTransactionTest extends TestCase
     }
 }
 
-class DummyMessage
-{
-}
+class DummyMessage {}

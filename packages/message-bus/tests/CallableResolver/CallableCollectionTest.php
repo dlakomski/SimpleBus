@@ -33,10 +33,8 @@ class CallableCollectionTest extends TestCase
      */
     public function itReturnsManyResolvedCallablesForAGivenName(): void
     {
-        $message1Callable1 = function () {
-        };
-        $message1Callable2 = function () {
-        };
+        $message1Callable1 = function () {};
+        $message1Callable2 = function () {};
         $collection = new CallableCollection(
             [
                 'message1' => [
@@ -44,10 +42,8 @@ class CallableCollectionTest extends TestCase
                     $message1Callable2,
                 ],
                 'message2' => [
-                    function () {
-                    },
-                    function () {
-                    },
+                    function () {},
+                    function () {},
                 ],
             ],
             $this->callableResolver

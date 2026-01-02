@@ -61,8 +61,7 @@ class MessageBusSupportingMiddleware implements MessageBus
     private function callableForNextMiddleware(int $index): callable
     {
         if (!isset($this->middlewares[$index])) {
-            return function () {
-            };
+            return function () {};
         }
 
         $middleware = $this->middlewares[$index];

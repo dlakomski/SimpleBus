@@ -41,21 +41,6 @@ class WrapsMessageHandlingInTransactionTest extends TestCase
     }
 
     /**
-     * @return array<Throwable[]>
-     */
-    public function errorProvider(): array
-    {
-        return [
-            [
-                new Exception(),
-            ],
-            [
-                new Error(),
-            ],
-        ];
-    }
-
-    /**
      * @test
      *
      * @dataProvider errorProvider
@@ -85,5 +70,20 @@ class WrapsMessageHandlingInTransactionTest extends TestCase
         } catch (Throwable $actualError) {
             $this->assertSame($error, $actualError);
         }
+    }
+
+    /**
+     * @return array<Throwable[]>
+     */
+    public function errorProvider(): array
+    {
+        return [
+            [
+                new Exception(),
+            ],
+            [
+                new Error(),
+            ],
+        ];
     }
 }

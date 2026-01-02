@@ -72,14 +72,8 @@ class AdditionalPropertiesResolverPassTest extends TestCase
     }
 }
 
-class Resolver1
-{
-}
+class Resolver1 {}
 
-class Resolver2
-{
-}
+class Resolver2 {}
 
-class Resolver3
-{
-}
+class Resolver3 {}
