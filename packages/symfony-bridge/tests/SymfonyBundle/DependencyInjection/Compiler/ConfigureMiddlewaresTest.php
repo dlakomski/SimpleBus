@@ -62,9 +62,9 @@ class ConfigureMiddlewaresTest extends TestCase
     }
 
     /**
-     * @param array<class-string, int> $expectedMiddlewareclasses
+     * @param array<class-string, int> $expectedMiddlewareClasses
      */
-    private function commandBusContainsMiddlewares(array $expectedMiddlewareclasses): void
+    private function commandBusContainsMiddlewares(array $expectedMiddlewareClasses): void
     {
         $actualMiddlewareClasses = [];
 
@@ -75,13 +75,13 @@ class ConfigureMiddlewaresTest extends TestCase
             $referencedService = $arguments[0];
 
             $this->assertInstanceOf(
-                'Symfony\Component\DependencyInjection\Definition',
+                Definition::class,
                 $referencedService
             );
 
             $actualMiddlewareClasses[$referencedService->getClass()] = $referencedService->getTag('middleware')[0]['priority'];
         }
 
-        $this->assertEquals($expectedMiddlewareclasses, $actualMiddlewareClasses);
+        $this->assertEquals($expectedMiddlewareClasses, $actualMiddlewareClasses);
     }
 }

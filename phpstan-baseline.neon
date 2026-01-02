@@ -21,11 +21,6 @@ parameters:
             path: packages/doctrine-orm-bridge/tests/EventListener/Fixtures/Entity/EventRecordingEntity.php
 
         -
-            message: "#^Method Symfony\\\\Contracts\\\\EventDispatcher\\\\EventDispatcherInterface\\:\\:dispatch\\(\\) invoked with 2 parameters, 1 required\\.$#"
-            count: 2
-            path: packages/rabbitmq-bundle-bridge/src/RabbitMQMessageConsumer.php
-
-        -
             message: "#^Call to method Symfony\\\\Component\\\\DependencyInjection\\\\ContainerBuilder\\:\\:has\\(\\) with string will always evaluate to true\\.$#"
             count: 1
             path: packages/symfony-bridge/src/DependencyInjection/Compiler/RegisterSubscribers.php
@@ -34,3 +29,11 @@ parameters:
             message: "#^Call to method Symfony\\\\Component\\\\DependencyInjection\\\\ContainerBuilder\\:\\:has\\(\\) with string will always evaluate to true\\.$#"
             count: 1
             path: packages/symfony-bridge/src/DependencyInjection/Compiler/RegisterHandlers.php
+
+        -
+            message: "#Possibly invalid array key type string\\|null#"
+            path: packages/rabbitmq-bundle-bridge/tests/DependencyInjection/Compiler/AdditionalPropertiesResolverPassTest.php
+
+        -
+            message: "#Possibly invalid array key type string\\|null#"
+            path: packages/symfony-bridge/tests/SymfonyBundle/DependencyInjection/Compiler/ConfigureMiddlewaresTest.php
