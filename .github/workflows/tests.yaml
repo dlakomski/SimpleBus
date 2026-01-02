@@ -13,7 +13,7 @@ jobs:
             -   uses: shivammathur/setup-php@2.25.5
                 with:
                     tools: flex
-                    php-version: 8.2
+                    php-version: 8.5
                     ini-values: "memory_limit=-1, error_reporting=-1, display_errors=On"
                 env:
                     COMPOSER_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -23,7 +23,7 @@ jobs:
             -   id: set-packages
                 run: echo "packages=$(vendor/bin/monorepo-builder packages-json)" >> $GITHUB_OUTPUT
             -   id: set-php-version
-                run: echo "php-version=$(vendor/bin/easy-ci php-versions-json)" >> $GITHUB_OUTPUT
+                run: echo "php-version=["8.2", "8.3", "8.4", "8.5"]" >> $GITHUB_OUTPUT
             -   id: set-symfony-version
                 run: echo 'symfony-version=["6.4.*", "7.4.*"]' >> $GITHUB_OUTPUT
         outputs:
