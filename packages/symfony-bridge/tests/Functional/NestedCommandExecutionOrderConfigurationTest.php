@@ -2,6 +2,7 @@
 
 namespace SimpleBus\SymfonyBridge\Tests\Functional;
 
+use PHPUnit\Framework\Attributes\Test;
 use SimpleBus\Message\Bus\MessageBus;
 use SimpleBus\SymfonyBridge\Tests\Functional\SmokeTest\Nested\NestedCommand;
 use SimpleBus\SymfonyBridge\Tests\Functional\SmokeTest\Nested\PostExecutionRecord;
@@ -19,13 +20,11 @@ final class NestedCommandExecutionOrderConfigurationTest extends KernelTestCase
         self::$class = null;
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function nestedCommandsAreExecutedSequentiallyByDefault(): void
     {
         self::bootKernel(['environment' => 'config1']);
-        $container = self::$kernel->getContainer();
+        $container = self::getContainer();
 
         $command = new NestedCommand();
 
@@ -51,13 +50,11 @@ final class NestedCommandExecutionOrderConfigurationTest extends KernelTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function disablingFinishesCommandBeforeHandlingNextMiddlewareKeepsCommandNesting(): void
     {
         self::bootKernel(['environment' => 'config3']);
-        $container = self::$kernel->getContainer();
+        $container = self::getContainer();
 
         $command = new NestedCommand();
 

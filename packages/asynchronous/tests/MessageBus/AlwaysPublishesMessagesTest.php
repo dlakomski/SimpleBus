@@ -2,6 +2,7 @@
 
 namespace SimpleBus\Asynchronous\Tests\MessageBus;
 
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use SimpleBus\Asynchronous\MessageBus\AlwaysPublishesMessages;
@@ -10,9 +11,7 @@ use stdClass;
 
 class AlwaysPublishesMessagesTest extends TestCase
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function itPublishesAMessageAndCallsTheNextMiddleware(): void
     {
         $message = $this->dummyMessage();

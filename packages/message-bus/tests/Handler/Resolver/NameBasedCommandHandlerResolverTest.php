@@ -3,6 +3,7 @@
 namespace SimpleBus\Message\Tests\Handler\Resolver;
 
 use Closure;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use SimpleBus\Message\CallableResolver\CallableMap;
@@ -10,11 +11,9 @@ use SimpleBus\Message\Handler\Resolver\NameBasedMessageHandlerResolver;
 use SimpleBus\Message\Name\MessageNameResolver;
 use stdClass;
 
-class NameBasedMessageHandlerResolverTest extends TestCase
+class NameBasedCommandHandlerResolverTest extends TestCase
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function itReturnsAMessageHandlerFromTheHandlerCollectionByItsName(): void
     {
         $message = $this->dummyMessage();
@@ -26,7 +25,7 @@ class NameBasedMessageHandlerResolverTest extends TestCase
 
         $nameBasedHandlerResolver = new NameBasedMessageHandlerResolver(
             $messageNameResolver,
-            $messageHandlerCollection
+            $messageHandlerCollection,
         );
 
         $this->assertSame($messageHandler, $nameBasedHandlerResolver->resolve($message));
@@ -53,7 +52,7 @@ class NameBasedMessageHandlerResolverTest extends TestCase
             ->expects($this->any())
             ->method('resolve')
             ->with($this->identicalTo($message))
-            ->will($this->returnValue($messageName));
+            ->willReturn($messageName);
 
         return $messageNameResolver;
     }
@@ -71,12 +70,10 @@ class NameBasedMessageHandlerResolverTest extends TestCase
         $messageHandlerMap
             ->expects($this->any())
             ->method('get')
-            ->will(
-                $this->returnCallback(
-                    function ($messageName) use ($messageHandlersByMessageName) {
-                        return $messageHandlersByMessageName[$messageName];
-                    }
-                )
+            ->willReturnCallback(
+                function ($messageName) use ($messageHandlersByMessageName) {
+                    return $messageHandlersByMessageName[$messageName];
+                },
             );
 
         return $messageHandlerMap;

@@ -2,6 +2,7 @@
 
 namespace SimpleBus\Message\Tests\Subscriber;
 
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Psr\Log\LoggerInterface;
@@ -13,9 +14,7 @@ use stdClass;
 
 class NotifiesMessageSubscribersMiddlewareTest extends TestCase
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function itNotifiesAllTheRelevantMessageSubscribers(): void
     {
         $message = $this->dummyMessage();
@@ -40,9 +39,7 @@ class NotifiesMessageSubscribersMiddlewareTest extends TestCase
         $this->assertSame([$message], $messageSubscriber2->receivedMessages());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function itLogsEveryCallToASubscriber(): void
     {
         $message = $this->dummyMessage();
@@ -61,14 +58,20 @@ class NotifiesMessageSubscribersMiddlewareTest extends TestCase
 
         $middleware = new NotifiesMessageSubscribersMiddleware($resolver, $logger, $level);
 
-        $logger->expects($this->exactly(4))
+        $matcher = $this->exactly(4);
+        $logger->expects($matcher)
             ->method('log')
-            ->withConsecutive(
-                [$level, 'Started notifying a subscriber'],
-                [$level, 'Finished notifying a subscriber'],
-                [$level, 'Started notifying a subscriber'],
-                [$level, 'Finished notifying a subscriber']
-            );
+            ->willReturnCallback(function ($actualLevel, $logMessage) use ($matcher, $level) {
+                $this->assertEquals($level, $actualLevel);
+
+                match ($matcher->numberOfInvocations()) {
+                    1 => $this->assertEquals('Started notifying a subscriber', $logMessage),
+                    2 => $this->assertEquals('Finished notifying a subscriber', $logMessage),
+                    3 => $this->assertEquals('Started notifying a subscriber', $logMessage),
+                    4 => $this->assertEquals('Finished notifying a subscriber', $logMessage),
+                    default => $this->fail('Unexpected number of invocations'),
+                };
+            });
 
         $next = new CallableSpy();
 
@@ -92,7 +95,7 @@ class NotifiesMessageSubscribersMiddlewareTest extends TestCase
             ->expects($this->any())
             ->method('resolve')
             ->with($this->identicalTo($message))
-            ->will($this->returnValue($messageSubscribers));
+            ->willReturn($messageSubscribers);
 
         return $resolver;
     }

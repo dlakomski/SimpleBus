@@ -2,6 +2,7 @@
 
 namespace SimpleBus\Message\Tests\Logging;
 
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use Psr\Log\LoggerInterface;
 use Psr\Log\LogLevel;
@@ -10,9 +11,7 @@ use stdClass;
 
 class LoggingMiddlewareTest extends TestCase
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function itLogsMessagesBeforeAndAfterHandlingIt(): void
     {
         $orderOfEvents = [];
@@ -24,11 +23,11 @@ class LoggingMiddlewareTest extends TestCase
         $logger
             ->expects($this->exactly(2))
             ->method('log')
-            ->will($this->returnCallback(function ($actualLevel, $logMessage, array $context) use (&$orderOfEvents, $message, $logLevel) {
+            ->willReturnCallback(function ($actualLevel, $logMessage, array $context) use (&$orderOfEvents, $message, $logLevel) {
                 $orderOfEvents[] = 'Logged: '.$logMessage;
                 $this->assertSame(['message' => $message], $context);
                 $this->assertSame($logLevel, $actualLevel);
-            }));
+            });
 
         $middleware = new LoggingMiddleware($logger, $logLevel);
 

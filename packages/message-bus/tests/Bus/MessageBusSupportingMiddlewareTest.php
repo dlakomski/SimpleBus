@@ -2,6 +2,7 @@
 
 namespace SimpleBus\Message\Tests\Bus;
 
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use SimpleBus\Message\Bus\MessageBus;
@@ -11,9 +12,7 @@ use stdClass;
 
 class MessageBusSupportingMiddlewareTest extends TestCase
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function itLetsAllStackedMessageBusesHandleTheMessage(): void
     {
         /** @var MessageBus[] $actualMessageBusesCalled */
@@ -32,21 +31,17 @@ class MessageBusSupportingMiddlewareTest extends TestCase
         $this->assertSame($stackedMessageBuses, $actualMessageBusesCalled);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function itWorksWithNoMessageBuses(): void
     {
         $message = $this->dummyMessage();
         $messageBusStack = new MessageBusSupportingMiddleware([]);
         $messageBusStack->handle($message);
 
-        $this->assertTrue(true);
+        $this->expectNotToPerformAssertions();
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function itWorksWithOneMessageBus(): void
     {
         $actualMessageBusesCalled = [];
@@ -62,9 +57,7 @@ class MessageBusSupportingMiddlewareTest extends TestCase
         $this->assertSame($stackedMessageBuses, $actualMessageBusesCalled);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function itCanPrependMiddleware(): void
     {
         $actualMessageBusesCalled = [];
@@ -83,9 +76,7 @@ class MessageBusSupportingMiddlewareTest extends TestCase
         $this->assertSame($appended, $actualMessageBusesCalled[1]);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function itCanReturnAnArrayWithItsMiddlewares(): void
     {
         $stackedMessageBuses = [
@@ -110,13 +101,11 @@ class MessageBusSupportingMiddlewareTest extends TestCase
         $messageBus
             ->expects($this->once())
             ->method('handle')
-            ->will(
-                $this->returnCallback(
-                    function ($message, callable $next) use (&$actualMessageBusesCalled, $messageBus) {
-                        $actualMessageBusesCalled[] = $messageBus;
-                        $next($message);
-                    }
-                )
+            ->willReturnCallback(
+                function ($message, callable $next) use (&$actualMessageBusesCalled, $messageBus) {
+                    $actualMessageBusesCalled[] = $messageBus;
+                    $next($message);
+                },
             );
 
         return $messageBus;

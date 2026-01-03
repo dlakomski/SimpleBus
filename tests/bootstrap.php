@@ -1,7 +1,7 @@
 <?php
 
-use Doctrine\Common\Annotations\AnnotationRegistry;
+use Symfony\Component\ErrorHandler\ErrorHandler;
 
-require __DIR__ . '/../vendor/autoload.php';
+require __DIR__.'/../vendor/autoload.php';
 
-AnnotationRegistry::registerLoader('class_exists');
+set_exception_handler([new ErrorHandler(), 'handleException']);

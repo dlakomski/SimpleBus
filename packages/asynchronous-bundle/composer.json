@@ -1,6 +1,5 @@
 {
     "name": "dlakomski/asynchronous-bundle",
-    "type": "symfony-bundle",
     "description": "Symfony bundle for using SimpleBus/Asynchronous",
     "keywords": [
         "asynchronous",
@@ -26,33 +25,22 @@
             "homepage": "http://php-and-symfony.matthiasnoback.nl"
         }
     ],
+    "type": "symfony-bundle",
     "require": {
-        "php": "^8.0",
+        "php": "^8.2",
         "dlakomski/asynchronous": "^6.0",
         "dlakomski/message-bus": "^6.0",
         "dlakomski/symfony-bridge": "^6.0",
-        "symfony/config": "^5.4 || ^6.3 || ^7.4",
-        "symfony/dependency-injection": "^5.4 || ^6.3 || ^7.4",
-        "symfony/framework-bundle": "^5.4 || ^6.3 || ^7.4"
-    },
-    "conflict": {
-        "monolog/monolog": "<1.26.1 || >=2.0,<2.3.0"
+        "symfony/config": "^6.3 || ^7.4.1",
+        "symfony/dependency-injection": "^6.3 || ^7.4",
+        "symfony/framework-bundle": "^6.3 || ^7.4"
     },
     "require-dev": {
         "ergebnis/composer-normalize": "^2.11",
-        "matthiasnoback/symfony-dependency-injection-test": "^4.3",
-        "phpunit/phpunit": "^9.5.5",
+        "matthiasnoback/symfony-dependency-injection-test": "^6.2",
+        "phpunit/phpunit": "^11.5.46",
         "symfony/monolog-bundle": "^3.8",
         "symfony/phpunit-bridge": "^6.3 || ^7.4"
-    },
-    "suggest": {
-        "symfony/monolog-bundle": "For logging messages"
-    },
-    "config": {
-        "sort-packages": true,
-        "allow-plugins": {
-            "ergebnis/composer-normalize": true
-        }
     },
     "autoload": {
         "psr-4": {
@@ -63,6 +51,18 @@
         "psr-4": {
             "SimpleBus\\AsynchronousBundle\\Tests\\": "tests"
         }
+    },
+    "suggest": {
+        "symfony/monolog-bundle": "For logging messages"
+    },
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "ergebnis/composer-normalize": true
+        }
+    },
+    "conflict": {
+        "monolog/monolog": "<1.26.1 || >=2.0,<2.3.0"
     },
     "minimum-stability": "dev",
     "prefer-stable": true

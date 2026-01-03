@@ -2,6 +2,7 @@
 
 namespace SimpleBus\AsynchronousBundle\Tests\Functional;
 
+use PHPUnit\Framework\Attributes\Test;
 use SimpleBus\Message\Bus\MessageBus;
 use SimpleBus\Serialization\Envelope\DefaultEnvelope;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
@@ -15,9 +16,7 @@ class SimpleBusAsynchronousBundleTest extends KernelTestCase
         static::$class = null;
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function itNotifiesSynchronousEventSubscribersAndPublishesEvents(): void
     {
         $kernel = static::createKernel();
@@ -38,9 +37,7 @@ class SimpleBusAsynchronousBundleTest extends KernelTestCase
         $this->assertSame([$event], $eventPublisher->publishedMessages());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function itNotifiesAsynchronousEventSubscribers(): void
     {
         $kernel = static::createKernel();
@@ -61,9 +58,7 @@ class SimpleBusAsynchronousBundleTest extends KernelTestCase
         $this->assertSame([], $eventPublisher->publishedMessages());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function itOnlyPublishesUnhandledCommands(): void
     {
         $kernel = static::createKernel();
@@ -80,9 +75,7 @@ class SimpleBusAsynchronousBundleTest extends KernelTestCase
         $this->assertSame([$command], $commandPublisher->publishedMessages());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function itHandlesAsynchronousCommands(): void
     {
         $kernel = static::createKernel();
@@ -103,9 +96,7 @@ class SimpleBusAsynchronousBundleTest extends KernelTestCase
         $this->assertSame([$command], $spy->handled);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function itConsumesAsynchronousCommands(): void
     {
         $kernel = static::createKernel();
@@ -123,9 +114,7 @@ class SimpleBusAsynchronousBundleTest extends KernelTestCase
         $this->assertEquals([new DummyCommand()], $spy->handled);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function itConsumesAsynchronousEvents(): void
     {
         $kernel = static::createKernel();

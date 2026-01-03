@@ -1,6 +1,5 @@
 {
     "name": "dlakomski/jms-serializer-bundle-bridge",
-    "type": "symfony-bundle",
     "description": "Symfony bundle for using JMSSerializer as message serializer for SimpleBus/Asynchronous",
     "keywords": [
         "asynchronous",
@@ -24,30 +23,20 @@
             "homepage": "http://php-and-symfony.matthiasnoback.nl"
         }
     ],
+    "type": "symfony-bundle",
     "require": {
-        "php": "^8.0",
-        "jms/serializer-bundle": "^4.0",
+        "php": "^8.2",
         "dlakomski/asynchronous-bundle": "^6.0",
         "dlakomski/jms-serializer-bridge": "^6.0",
-        "symfony/config": "^5.4 || ^6.3 || ^7.4",
-        "symfony/dependency-injection": "^5.4 || ^6.3 || ^7.4",
-        "symfony/framework-bundle": "^5.4 || ^6.3 || ^7.4"
-    },
-    "conflict": {
-        "doctrine/annotations": "<1.10.4",
-        "jms/metadata": "<2.5.2",
-        "jms/serializer": "<3.2.0"
+        "jms/serializer-bundle": "^5.5",
+        "symfony/config": "^6.3 || ^7.4.1",
+        "symfony/dependency-injection": "^6.3 || ^7.4",
+        "symfony/framework-bundle": "^6.3 || ^7.4"
     },
     "require-dev": {
         "ergebnis/composer-normalize": "^2.11",
-        "phpunit/phpunit": "^9.5.5",
+        "phpunit/phpunit": "^11.5.46",
         "symfony/phpunit-bridge": "^6.3 || ^7.4"
-    },
-    "config": {
-        "sort-packages": true,
-        "allow-plugins": {
-            "ergebnis/composer-normalize": true
-        }
     },
     "autoload": {
         "psr-4": {
@@ -58,6 +47,17 @@
         "psr-4": {
             "SimpleBus\\JMSSerializerBundleBridge\\Tests\\": "tests"
         }
+    },
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "ergebnis/composer-normalize": true
+        }
+    },
+    "conflict": {
+        "doctrine/annotations": "<1.10.4",
+        "jms/metadata": "<2.5.2",
+        "jms/serializer": "<3.2.0"
     },
     "minimum-stability": "dev",
     "prefer-stable": true

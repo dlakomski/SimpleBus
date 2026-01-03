@@ -2,6 +2,7 @@
 
 namespace SimpleBus\RabbitMQBundleBridge\Tests\DependencyInjection\Compiler;
 
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use SimpleBus\RabbitMQBundleBridge\DependencyInjection\Compiler\AdditionalPropertiesResolverPass;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -22,9 +23,7 @@ class AdditionalPropertiesResolverPassTest extends TestCase
         $this->container->addCompilerPass(new AdditionalPropertiesResolverPass());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function itConfiguresAChainOfBusesAccordingToTheGivenPriorities(): void
     {
         $classes = [
@@ -61,7 +60,7 @@ class AdditionalPropertiesResolverPassTest extends TestCase
 
         foreach ($this->delegatingDefinition->getArgument(0) as $argument) {
             $this->assertInstanceOf(
-                'Symfony\Component\DependencyInjection\Definition',
+                Definition::class,
                 $argument
             );
 

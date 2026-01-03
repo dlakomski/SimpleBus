@@ -14,7 +14,7 @@ class NamedMessageNameResolver implements MessageNameResolver
 
         $name = $message::messageName();
 
-        if (!is_string($name) || empty($name)) {
+        if (empty($name)) {
             throw CouldNotResolveMessageName::forMessage($message, sprintf('Static method "%s::messageName()" should return a non-empty string', get_class($message)));
         }
 

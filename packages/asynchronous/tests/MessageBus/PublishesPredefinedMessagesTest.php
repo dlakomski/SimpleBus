@@ -2,6 +2,7 @@
 
 namespace SimpleBus\Asynchronous\Tests\MessageBus;
 
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use SimpleBus\Asynchronous\MessageBus\PublishesPredefinedMessages;
@@ -11,9 +12,7 @@ use stdClass;
 
 class PublishesPredefinedMessagesTest extends TestCase
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function itCallsTheNextMiddlewareAndWhenTheMessageIsHandledItDoesNotPublishIt(): void
     {
         $message = $this->dummyMessage();
@@ -40,9 +39,7 @@ class PublishesPredefinedMessagesTest extends TestCase
         $this->assertTrue($nextCallableCalled);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function itCallsTheNextMiddlewareAndWhenTheMessageHasNoHandlerItPublishesIt(): void
     {
         $message = $this->dummyMessage();

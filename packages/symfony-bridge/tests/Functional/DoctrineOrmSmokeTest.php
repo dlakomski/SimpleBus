@@ -5,6 +5,7 @@ namespace SimpleBus\SymfonyBridge\Tests\Functional;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Mapping\ClassMetadata;
 use Doctrine\ORM\Tools\SchemaTool;
+use PHPUnit\Framework\Attributes\Test;
 use SimpleBus\Message\Bus\MessageBus;
 use SimpleBus\SymfonyBridge\Tests\Functional\SmokeTest\DoctrineTestKernel;
 use SimpleBus\SymfonyBridge\Tests\Functional\SmokeTest\SomeOtherEventSubscriber;
@@ -24,13 +25,11 @@ class DoctrineOrmSmokeTest extends KernelTestCase
         static::$class = null;
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function itHandlesACommandThenDispatchesEventsForAllModifiedEntities(): void
     {
         self::bootKernel(['environment' => 'config1']);
-        $container = self::$kernel->getContainer();
+        $container = self::getContainer();
 
         $this->createSchema($container);
 
@@ -79,7 +78,7 @@ class DoctrineOrmSmokeTest extends KernelTestCase
         /** @var EntityManager $entityManager */
         $entityManager = $container->get('doctrine.orm.entity_manager');
 
-        /** @var array<int, ClassMetadata<object>> $metadata */
+        /** @var list<ClassMetadata<object>> $metadata */
         $metadata = $entityManager->getMetadataFactory()->getAllMetadata();
 
         $schemaTool = new SchemaTool($entityManager);

@@ -2,6 +2,7 @@
 
 namespace SimpleBus\Asynchronous\Tests\Properties;
 
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use SimpleBus\Asynchronous\Properties\AdditionalPropertiesResolver;
@@ -10,9 +11,7 @@ use stdClass;
 
 class DelegatingAdditionalPropertiesResolverTest extends TestCase
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function itShouldMergeMultipleResolvers(): void
     {
         $message = $this->messageDummy();
@@ -36,7 +35,7 @@ class DelegatingAdditionalPropertiesResolverTest extends TestCase
         $resolver->expects($this->once())
             ->method('resolveAdditionalPropertiesFor')
             ->with($this->identicalTo($message))
-            ->will($this->returnValue($data));
+            ->willReturn($data);
 
         return $resolver;
     }

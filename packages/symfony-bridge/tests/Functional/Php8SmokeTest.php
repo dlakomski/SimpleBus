@@ -2,6 +2,8 @@
 
 namespace SimpleBus\SymfonyBridge\Tests\Functional;
 
+use PHPUnit\Framework\Attributes\CoversNothing;
+use PHPUnit\Framework\Attributes\Test;
 use SimpleBus\Message\Bus\MessageBus;
 use SimpleBus\SymfonyBridge\Tests\Functional\SmokeTest\Auto\AutoEvent2;
 use SimpleBus\SymfonyBridge\Tests\Functional\SmokeTest\Auto\AutoEvent3;
@@ -12,10 +14,9 @@ use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 /**
  * @internal
  *
- * @coversNothing
- *
  * @requires PHP 8.0
  */
+#[CoversNothing]
 class Php8SmokeTest extends KernelTestCase
 {
     protected function tearDown(): void
@@ -25,13 +26,11 @@ class Php8SmokeTest extends KernelTestCase
         static::$class = null;
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function itCanAutoRegisterEventSubscribersUsingPublicMethodAndUnion(): void
     {
         self::bootKernel(['environment' => 'config2_php8']);
-        $container = self::$kernel->getContainer();
+        $container = self::getContainer();
 
         $event2 = new AutoEvent2();
         $event3 = new AutoEvent3();

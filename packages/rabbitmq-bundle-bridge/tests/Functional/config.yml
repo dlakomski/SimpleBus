@@ -98,3 +98,7 @@ simple_bus_rabbit_mq_bundle_bridge:
         producer_service_id: old_sound_rabbit_mq.asynchronous_commands_producer
     events:
         producer_service_id: old_sound_rabbit_mq.asynchronous_events_producer
+
+framework:
+    test: true
+    http_method_override: false

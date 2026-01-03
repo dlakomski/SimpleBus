@@ -2,6 +2,7 @@
 
 namespace SimpleBus\Message\Tests\Message;
 
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use SimpleBus\Message\Bus\Middleware\FinishesHandlingMessageBeforeHandlingNext;
 use SimpleBus\Message\Bus\Middleware\MessageBusSupportingMiddleware;
@@ -10,11 +11,9 @@ use stdClass;
 use Throwable;
 use TypeError;
 
-class FinishesMessageBeforeHandlingNextTest extends TestCase
+class FinishesCommandBeforeHandlingNextTest extends TestCase
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function itFinishesHandlingAMessageBeforeHandlingTheNext(): void
     {
         $originalMessage = $this->dummyMessage();
@@ -53,9 +52,7 @@ class FinishesMessageBeforeHandlingNextTest extends TestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function itRethrowsACaughtExceptionsAndIsAbleToHandleNewMessagesAfterwards(): void
     {
         $message1 = $this->dummyMessage();

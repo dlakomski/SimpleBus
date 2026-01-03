@@ -2,6 +2,7 @@
 
 namespace SimpleBus\Message\Tests\CallableResolver;
 
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use SimpleBus\Message\CallableResolver\CallableCollection;
@@ -19,18 +20,14 @@ class CallableCollectionTest extends TestCase
         $this->callableResolver = $this->createMock(CallableResolver::class);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function itReturnsAnEmptyArrayIfNoCallablesAreDefined(): void
     {
         $collection = new CallableCollection([], $this->callableResolver);
         $this->assertSame([], $collection->filter('undefined_name'));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function itReturnsManyResolvedCallablesForAGivenName(): void
     {
         $message1Callable1 = function () {};
@@ -49,11 +46,19 @@ class CallableCollectionTest extends TestCase
             $this->callableResolver
         );
 
+        $matcher = $this->exactly(2);
         $this->callableResolver
-            ->expects($this->exactly(2))
+            ->expects($matcher)
             ->method('resolve')
-            ->withConsecutive([$message1Callable1], [$message1Callable2])
-            ->willReturnOnConsecutiveCalls($this->returnValue($message1Callable1), $this->returnValue($message1Callable2));
+            ->willReturnCallback(function ($callable) use ($matcher, $message1Callable1, $message1Callable2) {
+                match ($matcher->numberOfInvocations()) {
+                    1 => $this->assertEquals($message1Callable1, $callable),
+                    2 => $this->assertEquals($message1Callable2, $callable),
+                    default => $this->fail('Unexpected number of invocations'),
+                };
+
+                return $callable;
+            });
 
         $callables = $collection->filter('message1');
 

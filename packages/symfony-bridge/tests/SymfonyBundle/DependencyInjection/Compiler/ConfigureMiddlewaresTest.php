@@ -2,6 +2,7 @@
 
 namespace SimpleBus\SymfonyBridge\Tests\SymfonyBundle\DependencyInjection\Compiler;
 
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use SimpleBus\SymfonyBridge\DependencyInjection\Compiler\ConfigureMiddlewares;
 use SimpleBus\SymfonyBridge\Tests\Functional\SmokeTest\Auto\AutoEvent1;
@@ -29,9 +30,7 @@ class ConfigureMiddlewaresTest extends TestCase
         $this->container->addCompilerPass(new ConfigureMiddlewares($this->mainBusId, $this->middlewareTag));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function itConfiguresAChainOfBusesAccordingToTheGivenPriorities(): void
     {
         $classes = [
@@ -63,9 +62,9 @@ class ConfigureMiddlewaresTest extends TestCase
     }
 
     /**
-     * @param array<class-string, int> $expectedMiddlewareclasses
+     * @param array<class-string, int> $expectedMiddlewareClasses
      */
-    private function commandBusContainsMiddlewares(array $expectedMiddlewareclasses): void
+    private function commandBusContainsMiddlewares(array $expectedMiddlewareClasses): void
     {
         $actualMiddlewareClasses = [];
 
@@ -76,13 +75,13 @@ class ConfigureMiddlewaresTest extends TestCase
             $referencedService = $arguments[0];
 
             $this->assertInstanceOf(
-                'Symfony\Component\DependencyInjection\Definition',
+                Definition::class,
                 $referencedService
             );
 
             $actualMiddlewareClasses[$referencedService->getClass()] = $referencedService->getTag('middleware')[0]['priority'];
         }
 
-        $this->assertEquals($expectedMiddlewareclasses, $actualMiddlewareClasses);
+        $this->assertEquals($expectedMiddlewareClasses, $actualMiddlewareClasses);
     }
 }

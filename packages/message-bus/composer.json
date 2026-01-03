@@ -1,6 +1,5 @@
 {
     "name": "dlakomski/message-bus",
-    "type": "library",
     "description": "Generic classes and interfaces for messages and message buses",
     "keywords": [
         "message",
@@ -25,20 +24,15 @@
             "homepage": "http://php-and-symfony.matthiasnoback.nl"
         }
     ],
+    "type": "library",
     "require": {
-        "php": "^8.0",
+        "php": "^8.2",
         "psr/log": "^1.1.4 || ^2.0 || ^3.0"
     },
     "require-dev": {
         "ergebnis/composer-normalize": "^2.11",
-        "phpunit/phpunit": "^9.5.5",
+        "phpunit/phpunit": "^11.5.46",
         "symfony/phpunit-bridge": "^6.3 || ^7.4"
-    },
-    "config": {
-        "sort-packages": true,
-        "allow-plugins": {
-            "ergebnis/composer-normalize": true
-        }
     },
     "autoload": {
         "psr-4": {
@@ -48,6 +42,12 @@
     "autoload-dev": {
         "psr-4": {
             "SimpleBus\\Message\\Tests\\": "tests"
+        }
+    },
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "ergebnis/composer-normalize": true
         }
     },
     "minimum-stability": "dev",

@@ -2,6 +2,7 @@
 
 namespace SimpleBus\Message\Tests\Name;
 
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use SimpleBus\Message\Name\Exception\CouldNotResolveMessageName;
 use SimpleBus\Message\Name\NamedMessageNameResolver;
@@ -10,9 +11,7 @@ use stdClass;
 
 class NamedMessageNameResolverTest extends TestCase
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function itReturnsTheNameOfTheNamedMessage(): void
     {
         $messageName = 'message_name';
@@ -24,9 +23,7 @@ class NamedMessageNameResolverTest extends TestCase
         $this->assertSame($messageName, $resolver->resolve($message));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function itFailsWhenTheNameIsAnEmptyString(): void
     {
         $emptyString = '';
@@ -39,9 +36,7 @@ class NamedMessageNameResolverTest extends TestCase
         $resolver->resolve($message);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function itFailsWhenTheMessageIsNotANamedMessage(): void
     {
         $resolver = new NamedMessageNameResolver();

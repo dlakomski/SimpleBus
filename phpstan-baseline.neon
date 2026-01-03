@@ -1,17 +1,39 @@
 parameters:
-	ignoreErrors:
-		-
-			message: "#^Access to an undefined property Doctrine\\\\ORM\\\\Proxy\\\\Proxy&SimpleBus\\\\Message\\\\Recorder\\\\ContainsRecordedMessages\\:\\:\\$__isInitialized__\\.$#"
-			count: 1
-			path: packages/doctrine-orm-bridge/src/EventListener/CollectsEventsFromEntities.php
+    ignoreErrors:
+        -
+            message: "#^Access to an undefined property Doctrine\\\\ORM\\\\Proxy\\\\Proxy&SimpleBus\\\\Message\\\\Recorder\\\\ContainsRecordedMessages\\:\\:\\$__isInitialized__\\.$#"
+            count: 1
+            path: packages/doctrine-orm-bridge/src/EventListener/CollectsEventsFromEntities.php
 
-		-
-			message: "#^Property SimpleBus\\\\DoctrineORMBridge\\\\Tests\\\\EventListener\\\\Fixtures\\\\Entity\\\\EventRecordingEntity\\:\\:\\$id is never written, only read\\.$#"
-			count: 1
-			path: packages/doctrine-orm-bridge/tests/EventListener/Fixtures/Entity/EventRecordingEntity.php
+        -
+            message: "#^Instanceof between Doctrine\\\\ORM\\\\Proxy\\\\Proxy&SimpleBus\\\\Message\\\\Recorder\\\\ContainsRecordedMessages and Doctrine\\\\ORM\\\\Proxy\\\\Proxy will always evaluate to true\\.$#"
+            count: 1
+            path: packages/doctrine-orm-bridge/src/EventListener/CollectsEventsFromEntities.php
 
+        -
+            message: "#^Parameter \\#1 \\$classes of method Doctrine\\\\ORM\\\\Tools\\\\SchemaTool\\:\\:(createSchema|dropSchema)\\(\\) expects list<Doctrine\\\\ORM\\\\Mapping\\\\ClassMetadata>, array<int, Doctrine\\\\ORM\\\\Mapping\\\\ClassMetadata<object>> given\\.$#"
+            count: 2
+            path: packages/doctrine-orm-bridge/tests/PHPUnitTestServiceContainer/ServiceProvider/DoctrineOrmServiceProvider.php
 
-		-
-			message: "#^Method Symfony\\\\Contracts\\\\EventDispatcher\\\\EventDispatcherInterface\\:\\:dispatch\\(\\) invoked with 2 parameters, 1 required\\.$#"
-			count: 2
-			path: packages/rabbitmq-bundle-bridge/src/RabbitMQMessageConsumer.php
+        -
+            message: "#^Property SimpleBus\\\\DoctrineORMBridge\\\\Tests\\\\EventListener\\\\Fixtures\\\\Entity\\\\EventRecordingEntity\\:\\:\\$id is never written, only read\\.$#"
+            count: 1
+            path: packages/doctrine-orm-bridge/tests/EventListener/Fixtures/Entity/EventRecordingEntity.php
+
+        -
+            message: "#^Call to method Symfony\\\\Component\\\\DependencyInjection\\\\ContainerBuilder\\:\\:has\\(\\) with string will always evaluate to true\\.$#"
+            count: 1
+            path: packages/symfony-bridge/src/DependencyInjection/Compiler/RegisterSubscribers.php
+
+        -
+            message: "#^Call to method Symfony\\\\Component\\\\DependencyInjection\\\\ContainerBuilder\\:\\:has\\(\\) with string will always evaluate to true\\.$#"
+            count: 1
+            path: packages/symfony-bridge/src/DependencyInjection/Compiler/RegisterHandlers.php
+
+        -
+            message: "#Possibly invalid array key type (class-string|string)\\|null#"
+            path: packages/rabbitmq-bundle-bridge/tests/DependencyInjection/Compiler/AdditionalPropertiesResolverPassTest.php
+
+        -
+            message: "#Possibly invalid array key type (class-string|string)\\|null#"
+            path: packages/symfony-bridge/tests/SymfonyBundle/DependencyInjection/Compiler/ConfigureMiddlewaresTest.php

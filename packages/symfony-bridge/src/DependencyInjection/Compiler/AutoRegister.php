@@ -94,13 +94,11 @@ final class AutoRegister implements CompilerPassInterface
                     }
                 }
 
-                if (0 !== count($tags)) {
-                    // auto handle
-                    $definition->clearTag($this->tagName);
+                // auto handle
+                $definition->clearTag($this->tagName);
 
-                    foreach ($tagAttributes as $attributes) {
-                        $definition->addTag($this->tagName, $attributes);
-                    }
+                foreach ($tagAttributes as $attributes) {
+                    $definition->addTag($this->tagName, $attributes);
                 }
             }
         }

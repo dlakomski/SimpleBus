@@ -2,19 +2,16 @@
 
 declare(strict_types=1);
 
-use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
-use Symplify\ComposerJsonManipulator\ValueObject\ComposerJsonSection;
-use Symplify\MonorepoBuilder\ValueObject\Option;
+use Symplify\MonorepoBuilder\ComposerJsonManipulator\ValueObject\ComposerJsonSection;
+use Symplify\MonorepoBuilder\Config\MBConfig;
 
-return static function (ContainerConfigurator $containerConfigurator): void {
-    $parameters = $containerConfigurator->parameters();
-
-    $parameters->set(Option::DEFAULT_BRANCH_NAME, 'main');
-    $parameters->set(Option::DATA_TO_APPEND, [
+return static function (MBConfig $config): void {
+    $config->packageDirectories([__DIR__.'/packages']);
+    $config->defaultBranch('main');
+    $config->dataToAppend([
         ComposerJsonSection::REQUIRE_DEV => [
-            'phpunit/phpunit' => '^9.5.5',
-            'symplify/monorepo-builder' => '^10.0',
+            'phpunit/phpunit' => '^11.5.46',
+            'symplify/monorepo-builder' => '^11.2',
         ],
     ]);
-    $parameters->set(Option::PACKAGE_DIRECTORIES, [__DIR__.'/packages']);
 };
