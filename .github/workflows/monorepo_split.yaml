@@ -19,7 +19,7 @@ jobs:
             -   name: Install dependencies
                 uses: ramsey/composer-install@2.2.0
             -   id: set-packages
-                run: echo "packages=$(vendor/bin/monorepo-builder packages-json)" >> $GITHUB_OUTPUT
+                run: echo "packages=$(ls packages | jq -R -s -c 'split("\n")[:-1]')" >> $GITHUB_OUTPUT
         outputs:
             packages: ${{ steps.set-packages.outputs.packages }}
 

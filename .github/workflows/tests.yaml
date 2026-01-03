@@ -21,7 +21,7 @@ jobs:
                 uses: ramsey/composer-install@2.2.0
             -   run: vendor/bin/monorepo-builder validate
             -   id: set-packages
-                run: echo "packages=$(vendor/bin/monorepo-builder packages-json)" >> $GITHUB_OUTPUT
+                run: echo "packages=$(ls packages | jq -R -s -c 'split("\n")[:-1]')" >> $GITHUB_OUTPUT
             -   id: set-php-version
                 run: echo "php-version=["8.2", "8.3", "8.4", "8.5"]" >> $GITHUB_OUTPUT
             -   id: set-symfony-version
@@ -71,11 +71,6 @@ jobs:
                     SYMFONY_REQUIRE: "${{ matrix.symfony-version }}"
             -   run: vendor/bin/monorepo-builder localize-composer-paths packages/${{ matrix.package }}/composer.json --ansi
             -   run: vendor/bin/monorepo-builder bump-interdependency dev-main
-
-            -   if: "matrix.remove-dependencies != ''"
-                name: Remove dependencies
-                run: composer --working-dir=packages/${{ matrix.package }} remove --no-update ${{ matrix.remove-dependencies }}
-
             -   run: composer validate
                 working-directory: packages/${{ matrix.package }}
             -   name: Install package dependencies
