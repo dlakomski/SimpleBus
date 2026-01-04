@@ -47,7 +47,7 @@ jobs:
 
         services:
             rabbitmq:
-                image: rabbitmq:3.8-alpine
+                image: rabbitmq:3.8.9-alpine
                 env:
                     RABBITMQ_DEFAULT_USER: guest
                     RABBITMQ_DEFAULT_PASS: guest
@@ -83,6 +83,8 @@ jobs:
 
             -   run: vendor/bin/phpunit
                 working-directory: packages/${{ matrix.package }}
+                env:
+                    APP_ENV: qa
 
     php-cs-fixer:
         runs-on: ubuntu-22.04

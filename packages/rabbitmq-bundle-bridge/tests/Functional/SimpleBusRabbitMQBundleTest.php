@@ -29,7 +29,6 @@ class SimpleBusRabbitMQBundleTest extends KernelTestCase
     protected function setUp(): void
     {
         parent::setUp();
-
         static::bootKernel();
 
         $logger = static::getContainer()->get('logger');
