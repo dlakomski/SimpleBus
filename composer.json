@@ -1,6 +1,5 @@
 {
     "name": "simple-bus/simple-bus",
-    "type": "library",
     "description": "Simple CommandBus and EventBus implementation",
     "license": "MIT",
     "authors": [
@@ -22,6 +21,7 @@
             "email": "jasper@nerdsweide.nl"
         }
     ],
+    "type": "library",
     "require": {
         "php": "^8.2",
         "doctrine/dbal": "^3.0",
@@ -37,18 +37,6 @@
         "symfony/http-kernel": "^6.4.23 || ^7.4",
         "symfony/monolog-bundle": "^3.8",
         "symfony/yaml": "^6.4.23 || ^7.4"
-    },
-    "replace": {
-        "dlakomski/asynchronous": "self.version",
-        "dlakomski/asynchronous-bundle": "self.version",
-        "dlakomski/doctrine-dbal-bridge": "self.version",
-        "dlakomski/doctrine-orm-bridge": "self.version",
-        "dlakomski/jms-serializer-bridge": "self.version",
-        "dlakomski/jms-serializer-bundle-bridge": "self.version",
-        "dlakomski/message-bus": "self.version",
-        "dlakomski/rabbitmq-bundle-bridge": "self.version",
-        "dlakomski/serialization": "self.version",
-        "dlakomski/symfony-bridge": "self.version"
     },
     "require-dev": {
         "ext-json": "*",
@@ -71,13 +59,6 @@
         "symfony/stopwatch": "^6.4.23 || ^7.4",
         "symfony/translation": "^6.4.23 || ^7.4",
         "symplify/monorepo-builder": "^11.2"
-    },
-    "config": {
-        "sort-packages": true,
-        "allow-plugins": {
-            "composer/package-versions-deprecated": true,
-            "phpstan/extension-installer": true
-        }
     },
     "autoload": {
         "psr-4": {
@@ -107,11 +88,30 @@
             "SimpleBus\\SymfonyBridge\\Tests\\": "packages/symfony-bridge/tests"
         }
     },
-    "minimum-stability": "dev",
-    "prefer-stable": true,
     "scripts": {
         "cs": "vendor/bin/php-cs-fixer fix",
         "phpstan": "vendor/bin/phpstan",
         "tests": "vendor/bin/phpunit"
-    }
+    },
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "composer/package-versions-deprecated": true,
+            "phpstan/extension-installer": true
+        }
+    },
+    "replace": {
+        "dlakomski/asynchronous": "6.4.0",
+        "dlakomski/asynchronous-bundle": "6.4.0",
+        "dlakomski/doctrine-dbal-bridge": "6.4.0",
+        "dlakomski/doctrine-orm-bridge": "6.4.0",
+        "dlakomski/jms-serializer-bridge": "6.4.0",
+        "dlakomski/jms-serializer-bundle-bridge": "6.4.0",
+        "dlakomski/message-bus": "6.4.0",
+        "dlakomski/rabbitmq-bundle-bridge": "6.4.0",
+        "dlakomski/serialization": "6.4.0",
+        "dlakomski/symfony-bridge": "6.4.0"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }

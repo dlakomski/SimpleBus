@@ -27,8 +27,8 @@
     "type": "library",
     "require": {
         "php": "^8.2",
-        "dlakomski/message-bus": "^6.0",
-        "dlakomski/serialization": "^6.0",
+        "dlakomski/message-bus": "^6.4",
+        "dlakomski/serialization": "^6.4",
         "psr/log": "^1.1.4 || ^2.0 || ^3.0"
     },
     "require-dev": {

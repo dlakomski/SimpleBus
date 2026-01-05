@@ -26,8 +26,8 @@
     "type": "symfony-bundle",
     "require": {
         "php": "^8.2",
-        "dlakomski/asynchronous-bundle": "^6.0",
-        "dlakomski/jms-serializer-bridge": "^6.0",
+        "dlakomski/asynchronous-bundle": "^6.4",
+        "dlakomski/jms-serializer-bridge": "^6.4",
         "jms/serializer-bundle": "^5.5",
         "symfony/config": "^6.4.23 || ^7.4.1",
         "symfony/dependency-injection": "^6.4.23 || ^7.4",

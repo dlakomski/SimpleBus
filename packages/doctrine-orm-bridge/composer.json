@@ -26,7 +26,7 @@
     "type": "library",
     "require": {
         "php": "^8.2",
-        "dlakomski/message-bus": "^6.0",
+        "dlakomski/message-bus": "^6.4",
         "doctrine/dbal": "^3.0",
         "doctrine/orm": "^2.15"
     },
