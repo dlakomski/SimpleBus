@@ -3,10 +3,6 @@ parameters:
     log_file: '%kernel.logs_dir%/test.log'
     rabbitmq_host: localhost
 
-when@qa:
-    parameters:
-        rabbitmq_host: rabbitmq
-
 services:
     # Temp fix until https://github.com/php-amqplib/RabbitMqBundle/pull/509 gets merged
     old_sound_rabbit_mq.parts_holder:
