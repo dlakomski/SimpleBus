@@ -28,10 +28,10 @@
     "require": {
         "php": "^8.2",
         "dlakomski/message-bus": "^6.0",
-        "symfony/config": "^6.3 || ^7.4.1",
-        "symfony/dependency-injection": "^6.3 || ^7.4",
-        "symfony/http-kernel": "^6.3 || ^7.4",
-        "symfony/yaml": "^6.3 || ^7.4"
+        "symfony/config": "^6.4.23 || ^7.4.1",
+        "symfony/dependency-injection": "^6.4.23 || ^7.4",
+        "symfony/http-kernel": "^6.4.23 || ^7.4",
+        "symfony/yaml": "^6.4.23 || ^7.4"
     },
     "require-dev": {
         "dlakomski/doctrine-orm-bridge": "^6.0",
@@ -40,10 +40,10 @@
         "ergebnis/composer-normalize": "^2.11",
         "laminas/laminas-code": "^4.5",
         "phpunit/phpunit": "^11.5.46",
-        "symfony/framework-bundle": "^6.3 || ^7.4",
-        "symfony/monolog-bridge": "^6.3 || ^7.4",
+        "symfony/framework-bundle": "^6.4.23 || ^7.4",
+        "symfony/monolog-bridge": "^6.4.23 || ^7.4",
         "symfony/monolog-bundle": "^3.8",
-        "symfony/phpunit-bridge": "^6.3 || ^7.4"
+        "symfony/phpunit-bridge": "^6.4.23 || ^7.4"
     },
     "autoload": {
         "psr-4": {

@@ -34,8 +34,8 @@
         "ergebnis/composer-normalize": "^2.11",
         "phpunit/phpunit": "^11.5.46",
         "pimple/pimple": "^3.5",
-        "symfony/cache": "^6.3 || ^7.4",
-        "symfony/phpunit-bridge": "^6.3 || ^7.4"
+        "symfony/cache": "^6.4.23 || ^7.4",
+        "symfony/phpunit-bridge": "^6.4.23 || ^7.4"
     },
     "autoload": {
         "psr-4": {

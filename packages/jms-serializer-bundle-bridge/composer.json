@@ -29,14 +29,14 @@
         "dlakomski/asynchronous-bundle": "^6.0",
         "dlakomski/jms-serializer-bridge": "^6.0",
         "jms/serializer-bundle": "^5.5",
-        "symfony/config": "^6.3 || ^7.4.1",
-        "symfony/dependency-injection": "^6.3 || ^7.4",
-        "symfony/framework-bundle": "^6.3 || ^7.4"
+        "symfony/config": "^6.4.23 || ^7.4.1",
+        "symfony/dependency-injection": "^6.4.23 || ^7.4",
+        "symfony/framework-bundle": "^6.4.23 || ^7.4"
     },
     "require-dev": {
         "ergebnis/composer-normalize": "^2.11",
         "phpunit/phpunit": "^11.5.46",
-        "symfony/phpunit-bridge": "^6.3 || ^7.4"
+        "symfony/phpunit-bridge": "^6.4.23 || ^7.4"
     },
     "autoload": {
         "psr-4": {
