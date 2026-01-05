@@ -31,8 +31,8 @@
         "dlakomski/asynchronous": "^6.0",
         "dlakomski/asynchronous-bundle": "^6.0",
         "dlakomski/message-bus": "^6.0",
-        "php-amqplib/php-amqplib": "^3.1",
-        "php-amqplib/rabbitmq-bundle": "^2.11.0",
+        "php-amqplib/php-amqplib": "^3.7",
+        "php-amqplib/rabbitmq-bundle": "^2.18",
         "symfony/monolog-bundle": "^3.8"
     },
     "require-dev": {
