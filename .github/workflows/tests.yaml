@@ -9,8 +9,8 @@ jobs:
     build-matrix:
         runs-on: ubuntu-22.04
         steps:
-            -   uses: actions/checkout@v4
-            -   uses: shivammathur/setup-php@2.25.5
+            -   uses: actions/checkout@v6
+            -   uses: shivammathur/setup-php@v2
                 with:
                     tools: flex
                     php-version: 8.3
@@ -18,10 +18,10 @@ jobs:
                 env:
                     COMPOSER_TOKEN: ${{ secrets.GITHUB_TOKEN }}
             -   name: Install dependencies
-                uses: ramsey/composer-install@2.2.0
+                uses: ramsey/composer-install@v3
             -   run: vendor/bin/monorepo-builder validate
             -   id: set-packages
-                run: echo "packages=$(vendor/bin/monorepo-builder packages-json)" >> $GITHUB_OUTPUT
+                run: echo "packages=$(ls packages | jq -R -s -c 'split("\n")[:-1]')" >> $GITHUB_OUTPUT
             -   id: set-php-version
                 run: echo "php-version=["8.2", "8.3", "8.4", "8.5"]" >> $GITHUB_OUTPUT
             -   id: set-symfony-version
@@ -47,16 +47,16 @@ jobs:
 
         services:
             rabbitmq:
-                image: rabbitmq:3.8-alpine
+                image: rabbitmq:3.8.9-alpine
                 env:
                     RABBITMQ_DEFAULT_USER: guest
                     RABBITMQ_DEFAULT_PASS: guest
                 ports:
                     - 5672:5672
         steps:
-            -   uses: actions/checkout@v4
+            -   uses: actions/checkout@v6
 
-            -   uses: shivammathur/setup-php@2.25.5
+            -   uses: shivammathur/setup-php@v2
                 with:
                     tools: flex
                     php-version: ${{ matrix.php-version }}
@@ -66,20 +66,15 @@ jobs:
 
             -   run: composer validate
             -   name: Install core dependencies
-                uses: ramsey/composer-install@2.2.0
+                uses: ramsey/composer-install@v3
                 env:
                     SYMFONY_REQUIRE: "${{ matrix.symfony-version }}"
             -   run: vendor/bin/monorepo-builder localize-composer-paths packages/${{ matrix.package }}/composer.json --ansi
             -   run: vendor/bin/monorepo-builder bump-interdependency dev-main
-
-            -   if: "matrix.remove-dependencies != ''"
-                name: Remove dependencies
-                run: composer --working-dir=packages/${{ matrix.package }} remove --no-update ${{ matrix.remove-dependencies }}
-
             -   run: composer validate
                 working-directory: packages/${{ matrix.package }}
             -   name: Install package dependencies
-                uses: ramsey/composer-install@2.2.0
+                uses: ramsey/composer-install@v3
                 env:
                     SYMFONY_REQUIRE: "${{ matrix.symfony-version }}"
                 with:
@@ -88,12 +83,14 @@ jobs:
 
             -   run: vendor/bin/phpunit
                 working-directory: packages/${{ matrix.package }}
+                env:
+                    APP_ENV: qa
 
     php-cs-fixer:
         runs-on: ubuntu-22.04
         steps:
             -   uses: actions/checkout@v4
-            -   uses: shivammathur/setup-php@2.25.5
+            -   uses: shivammathur/setup-php@v2
                 with:
                     tools: flex
                     php-version: 8.2
@@ -101,7 +98,7 @@ jobs:
                 env:
                     COMPOSER_TOKEN: ${{ secrets.GITHUB_TOKEN }}
             -   name: Install dependencies
-                uses: ramsey/composer-install@2.2.0
+                uses: ramsey/composer-install@v3
                 env:
                     SYMFONY_REQUIRE: "${{ matrix.symfony-version }}"
             -   run: vendor/bin/php-cs-fixer fix --ansi --diff --dry-run
@@ -119,7 +116,7 @@ jobs:
                     - 'highest'
         steps:
             -   uses: actions/checkout@v4
-            -   uses: shivammathur/setup-php@2.25.5
+            -   uses: shivammathur/setup-php@v2
                 with:
                     tools: flex
                     php-version: ${{ matrix.php-version }}
@@ -127,7 +124,7 @@ jobs:
                 env:
                     COMPOSER_TOKEN: ${{ secrets.GITHUB_TOKEN }}
             -   name: Install core dependencies
-                uses: ramsey/composer-install@2.2.0
+                uses: ramsey/composer-install@v3
                 env:
                     SYMFONY_REQUIRE: "${{ matrix.symfony-version }}"
                 with:

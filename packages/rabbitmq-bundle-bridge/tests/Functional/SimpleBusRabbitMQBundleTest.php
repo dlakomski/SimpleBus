@@ -9,7 +9,10 @@ use PHPUnit\Framework\Attributes\Test;
 use SimpleBus\Asynchronous\Properties\DelegatingAdditionalPropertiesResolver;
 use SimpleBus\Message\Bus\MessageBus;
 use stdClass;
+use Symfony\Bundle\FrameworkBundle\Console\Application;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
+use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Input\StringInput;
 use Symfony\Component\Process\Process;
 
 class SimpleBusRabbitMQBundleTest extends KernelTestCase
@@ -21,6 +24,8 @@ class SimpleBusRabbitMQBundleTest extends KernelTestCase
      */
     private ?Process $process = null;
 
+    private static ?Application $application = null;
+
     /**
      * Timeout for asynchronous tests.
      */
@@ -29,7 +34,6 @@ class SimpleBusRabbitMQBundleTest extends KernelTestCase
     protected function setUp(): void
     {
         parent::setUp();
-
         static::bootKernel();
 
         $logger = static::getContainer()->get('logger');
@@ -39,11 +43,10 @@ class SimpleBusRabbitMQBundleTest extends KernelTestCase
         $this->logger = $logger;
         $this->logger->clearFile();
 
-        $process = new Process(
-            ['php', 'console.php', 'rabbitmq:setup-fabric'],
-            __DIR__
-        );
-        $this->assertSame(0, $process->run());
+        $application = self::getApplication();
+        $code = $application->run(new StringInput('rabbitmq:setup-fabric --quiet'));
+
+        $this->assertSame(Command::SUCCESS, $code, 'Incorrect setup-fabric process exit code');
     }
 
     protected function tearDown(): void
@@ -130,7 +133,7 @@ class SimpleBusRabbitMQBundleTest extends KernelTestCase
                 $this->logger->fileContains($message);
             },
             new Eventually($this->timeoutMs, 100),
-            sprintf('The log file does not contain "%s"', $message)
+            sprintf('The log file does not contain "%s"', $message),
         );
     }
 
@@ -170,9 +173,19 @@ class SimpleBusRabbitMQBundleTest extends KernelTestCase
     {
         $this->process = new Process(
             ['php', 'console.php', 'rabbitmq:consumer', $queue],
-            __DIR__
+            __DIR__,
         );
 
         $this->process->start();
+    }
+
+    private static function getApplication(): Application
+    {
+        if (null === self::$application) {
+            self::$application = new Application(self::createKernel());
+            self::$application->setAutoExit(false);
+        }
+
+        return self::$application;
     }
 }
