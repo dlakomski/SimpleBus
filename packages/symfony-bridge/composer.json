@@ -35,8 +35,8 @@
     },
     "require-dev": {
         "dlakomski/doctrine-orm-bridge": "^6.4",
-        "doctrine/doctrine-bundle": "^2.5",
-        "doctrine/orm": "^2.15",
+        "doctrine/doctrine-bundle": "^2.17",
+        "doctrine/orm": "^3.0",
         "ergebnis/composer-normalize": "^2.11",
         "laminas/laminas-code": "^4.5",
         "phpunit/phpunit": "^11.5.46",

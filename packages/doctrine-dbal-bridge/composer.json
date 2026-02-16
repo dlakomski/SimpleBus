@@ -23,7 +23,7 @@
     "require": {
         "php": "^8.2",
         "dlakomski/message-bus": "^6.4",
-        "doctrine/dbal": "^3.0"
+        "doctrine/dbal": "^3.8.2|^4.0"
     },
     "require-dev": {
         "ergebnis/composer-normalize": "^2.11",
