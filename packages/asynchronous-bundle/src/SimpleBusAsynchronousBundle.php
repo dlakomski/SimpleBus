@@ -2,12 +2,17 @@
 
 namespace SimpleBus\AsynchronousBundle;
 
+use Reflector;
+use SimpleBus\AsynchronousBundle\Attribute\AsyncCommandHandler;
+use SimpleBus\AsynchronousBundle\Attribute\AsyncEventListener;
 use SimpleBus\AsynchronousBundle\DependencyInjection\Compiler\CollectAsynchronousEventNames;
 use SimpleBus\AsynchronousBundle\DependencyInjection\SimpleBusAsynchronousExtension;
+use SimpleBus\SymfonyBridge\DependencyInjection\AttributeTagResolver;
 use SimpleBus\SymfonyBridge\DependencyInjection\Compiler\AutoRegister;
 use SimpleBus\SymfonyBridge\DependencyInjection\Compiler\ConfigureMiddlewares;
 use SimpleBus\SymfonyBridge\DependencyInjection\Compiler\RegisterHandlers;
 use SimpleBus\SymfonyBridge\DependencyInjection\Compiler\RegisterSubscribers;
+use Symfony\Component\DependencyInjection\ChildDefinition;
 use Symfony\Component\DependencyInjection\Compiler\PassConfig;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
@@ -21,6 +26,24 @@ class SimpleBusAsynchronousBundle extends Bundle
 
     public function build(ContainerBuilder $container): void
     {
+        $container->registerAttributeForAutoconfiguration(
+            AsyncCommandHandler::class,
+            static function (ChildDefinition $definition, AsyncCommandHandler $attribute, Reflector $reflector): void {
+                foreach (AttributeTagResolver::resolveTags($reflector, $attribute->handles, $attribute->method, 'handles') as $tag) {
+                    $definition->addTag('asynchronous_command_handler', $tag);
+                }
+            }
+        );
+
+        $container->registerAttributeForAutoconfiguration(
+            AsyncEventListener::class,
+            static function (ChildDefinition $definition, AsyncEventListener $attribute, Reflector $reflector): void {
+                foreach (AttributeTagResolver::resolveTags($reflector, $attribute->subscribesTo, $attribute->method, 'subscribes_to') as $tag) {
+                    $definition->addTag('asynchronous_event_subscriber', $tag);
+                }
+            }
+        );
+
         $container->addCompilerPass(
             new ConfigureMiddlewares('simple_bus.asynchronous.command_bus', 'asynchronous_command_bus_middleware')
         );
