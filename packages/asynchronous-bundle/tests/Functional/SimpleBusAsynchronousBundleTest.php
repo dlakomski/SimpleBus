@@ -3,6 +3,8 @@
 namespace SimpleBus\AsynchronousBundle\Tests\Functional;
 
 use PHPUnit\Framework\Attributes\Test;
+use SimpleBus\AsynchronousBundle\Tests\Functional\Attribute\AttrAsyncCommand;
+use SimpleBus\AsynchronousBundle\Tests\Functional\Attribute\AttrEvent;
 use SimpleBus\Message\Bus\MessageBus;
 use SimpleBus\Serialization\Envelope\DefaultEnvelope;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
@@ -35,6 +37,48 @@ class SimpleBusAsynchronousBundleTest extends KernelTestCase
         /** @var PublisherSpy $eventPublisher */
         $eventPublisher = $kernel->getContainer()->get('event_publisher_spy');
         $this->assertSame([$event], $eventPublisher->publishedMessages());
+    }
+
+    #[Test]
+    public function itNotifiesAsynchronousEventSubscribersUsingAttributes(): void
+    {
+        $kernel = static::createKernel();
+        $kernel->boot();
+
+        $event = new AttrEvent();
+
+        /** @var MessageBus $asynchronousEventBus */
+        $asynchronousEventBus = $kernel->getContainer()->get('asynchronous_event_bus');
+        $asynchronousEventBus->handle($event);
+
+        /** @var Spy $spy */
+        $spy = $kernel->getContainer()->get('spy');
+        $this->assertSame([$event], $spy->handled);
+
+        /** @var PublisherSpy $eventPublisher */
+        $eventPublisher = $kernel->getContainer()->get('event_publisher_spy');
+        $this->assertSame([], $eventPublisher->publishedMessages());
+    }
+
+    #[Test]
+    public function itHandlesAsynchronousCommandsUsingAttributes(): void
+    {
+        $kernel = static::createKernel();
+        $kernel->boot();
+
+        $command = new AttrAsyncCommand();
+
+        /** @var MessageBus $asynchronousCommandBus */
+        $asynchronousCommandBus = $kernel->getContainer()->get('asynchronous_command_bus');
+        $asynchronousCommandBus->handle($command);
+
+        /** @var PublisherSpy $commandPublisher */
+        $commandPublisher = $kernel->getContainer()->get('command_publisher_spy');
+        $this->assertSame([], $commandPublisher->publishedMessages());
+
+        /** @var Spy $spy */
+        $spy = $kernel->getContainer()->get('spy');
+        $this->assertSame([$command], $spy->handled);
     }
 
     #[Test]

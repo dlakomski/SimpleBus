@@ -1,0 +1,8 @@
+imports:
+    - { resource: config.yml }
+
+services:
+    SimpleBus\SymfonyBridge\Tests\Functional\SmokeTest\Attributes\:
+        resource: '%kernel.project_dir%/Attributes/*'
+        public: false
+        autoconfigure: true

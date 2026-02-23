@@ -17,6 +17,20 @@ services:
         public: true
         class: SimpleBus\AsynchronousBundle\Tests\Functional\Spy
 
+    asynchronous_attribute_event_subscriber:
+        public: false
+        autoconfigure: true
+        class: SimpleBus\AsynchronousBundle\Tests\Functional\Attribute\AttributeAsyncEventSubscriber
+        arguments:
+            - '@spy'
+
+    asynchronous_attribute_command_handler:
+        public: false
+        autoconfigure: true
+        class: SimpleBus\AsynchronousBundle\Tests\Functional\Attribute\AttributeAsyncCommandHandler
+        arguments:
+            - '@spy'
+
     synchronous_event_subscriber:
         public: false
         class: SimpleBus\AsynchronousBundle\Tests\Functional\EventSubscriber
