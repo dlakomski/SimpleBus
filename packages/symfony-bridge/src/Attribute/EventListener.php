@@ -1,11 +1,13 @@
-<?php declare(strict_types=1);
+<?php
 
-namespace SimpleBus\AsynchronousBundle\Attribute;
+declare(strict_types=1);
+
+namespace SimpleBus\SymfonyBridge\Attribute;
 
 use Attribute;
 
 #[Attribute(Attribute::TARGET_CLASS | Attribute::TARGET_METHOD | Attribute::IS_REPEATABLE)]
-final class AsAsynchronousEventSubscriber
+final class EventListener
 {
     public ?string $subscribesTo;
     public ?string $method;

@@ -3,8 +3,8 @@
 namespace SimpleBus\SymfonyBridge;
 
 use Reflector;
-use SimpleBus\SymfonyBridge\Attribute\AsEventSubscriber;
-use SimpleBus\SymfonyBridge\Attribute\AsMessageHandler;
+use SimpleBus\SymfonyBridge\Attribute\CommandHandler;
+use SimpleBus\SymfonyBridge\Attribute\EventListener;
 use SimpleBus\SymfonyBridge\DependencyInjection\AttributeTagResolver;
 use SimpleBus\SymfonyBridge\DependencyInjection\CommandBusExtension;
 use SimpleBus\SymfonyBridge\DependencyInjection\Compiler\AutoRegister;
@@ -27,8 +27,8 @@ class SimpleBusCommandBusBundle extends Bundle
     public function build(ContainerBuilder $container): void
     {
         $container->registerAttributeForAutoconfiguration(
-            AsMessageHandler::class,
-            static function (ChildDefinition $definition, AsMessageHandler $attribute, Reflector $reflector): void {
+            CommandHandler::class,
+            static function (ChildDefinition $definition, CommandHandler $attribute, Reflector $reflector): void {
                 foreach (AttributeTagResolver::resolveTags($reflector, $attribute->handles, $attribute->method, 'handles') as $tag) {
                     $definition->addTag('command_handler', $tag);
                 }
@@ -36,8 +36,8 @@ class SimpleBusCommandBusBundle extends Bundle
         );
 
         $container->registerAttributeForAutoconfiguration(
-            AsEventSubscriber::class,
-            static function (ChildDefinition $definition, AsEventSubscriber $attribute, Reflector $reflector): void {
+            EventListener::class,
+            static function (ChildDefinition $definition, EventListener $attribute, Reflector $reflector): void {
                 foreach (AttributeTagResolver::resolveTags($reflector, $attribute->subscribesTo, $attribute->method, 'subscribes_to') as $tag) {
                     $definition->addTag('event_subscriber', $tag);
                 }

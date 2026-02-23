@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleBus\SymfonyBridge\DependencyInjection;
 
+use ReflectionClass;
 use ReflectionMethod;
 use ReflectionNamedType;
 use ReflectionUnionType;
@@ -20,31 +21,43 @@ final class AttributeTagResolver
         ?string $method,
         string $typeKey,
     ): array {
-        $resolvedMethod = $method ?? ($reflector instanceof ReflectionMethod ? $reflector->getName() : null);
+        $resolvedMethod = $method
+            ?? ($reflector instanceof ReflectionMethod ? $reflector->getName() : null)
+            ?? ($reflector instanceof ReflectionClass && $reflector->hasMethod('handle') && !$reflector->hasMethod('__invoke') ? 'handle' : null);
 
-        if (null === $messageType && $reflector instanceof ReflectionMethod) {
-            $parameters = $reflector->getParameters();
-            if (1 === count($parameters) && !$parameters[0]->isOptional()) {
-                $type = $parameters[0]->getType();
+        if (null === $messageType) {
+            $reflectionMethod = match (true) {
+                $reflector instanceof ReflectionMethod => $reflector,
+                $reflector instanceof ReflectionClass && null !== $method => $reflector->getMethod($method),
+                $reflector instanceof ReflectionClass && $reflector->hasMethod('__invoke') => $reflector->getMethod('__invoke'),
+                $reflector instanceof ReflectionClass && $reflector->hasMethod('handle') => $reflector->getMethod('handle'),
+                default => null,
+            };
 
-                $types = match (true) {
-                    $type instanceof ReflectionNamedType => [$type],
-                    $type instanceof ReflectionUnionType => $type->getTypes(),
-                    default => [],
-                };
+            if (null !== $reflectionMethod) {
+                $parameters = $reflectionMethod->getParameters();
+                if (1 === count($parameters) && !$parameters[0]->isOptional()) {
+                    $type = $parameters[0]->getType();
 
-                $tags = [];
-                foreach ($types as $namedType) {
-                    if (!$namedType instanceof ReflectionNamedType || $namedType->isBuiltin()) {
-                        continue;
+                    $types = match (true) {
+                        $type instanceof ReflectionNamedType => [$type],
+                        $type instanceof ReflectionUnionType => $type->getTypes(),
+                        default => [],
+                    };
+
+                    $tags = [];
+                    foreach ($types as $namedType) {
+                        if (!$namedType instanceof ReflectionNamedType || $namedType->isBuiltin()) {
+                            continue;
+                        }
+                        $tags[] = array_filter([
+                            $typeKey => $namedType->getName(),
+                            'method' => $resolvedMethod,
+                        ]);
                     }
-                    $tags[] = array_filter([
-                        $typeKey => $namedType->getName(),
-                        'method' => $resolvedMethod,
-                    ]);
-                }
 
-                return $tags;
+                    return $tags;
+                }
             }
         }
 

@@ -31,6 +31,27 @@ services:
         arguments:
             - '@spy'
 
+    asynchronous_attribute_union_command_handler:
+        public: false
+        autoconfigure: true
+        class: SimpleBus\AsynchronousBundle\Tests\Functional\Attribute\AttributeUnionAsyncCommandHandler
+        arguments:
+            - '@spy'
+
+    asynchronous_attribute_union_command_handler_process:
+        public: false
+        autoconfigure: true
+        class: SimpleBus\AsynchronousBundle\Tests\Functional\Attribute\AttributeUnionAsyncCommandHandlerProcess
+        arguments:
+            - '@spy'
+
+    asynchronous_attribute_union_command_handler_explicit:
+        public: false
+        autoconfigure: true
+        class: SimpleBus\AsynchronousBundle\Tests\Functional\Attribute\AttributeUnionAsyncCommandHandlerExplicit
+        arguments:
+            - '@spy'
+
     synchronous_event_subscriber:
         public: false
         class: SimpleBus\AsynchronousBundle\Tests\Functional\EventSubscriber

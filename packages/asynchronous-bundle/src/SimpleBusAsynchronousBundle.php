@@ -2,12 +2,9 @@
 
 namespace SimpleBus\AsynchronousBundle;
 
-use ReflectionMethod;
-use ReflectionNamedType;
-use ReflectionUnionType;
 use Reflector;
-use SimpleBus\AsynchronousBundle\Attribute\AsAsynchronousEventSubscriber;
-use SimpleBus\AsynchronousBundle\Attribute\AsAsynchronousMessageHandler;
+use SimpleBus\AsynchronousBundle\Attribute\AsyncCommandHandler;
+use SimpleBus\AsynchronousBundle\Attribute\AsyncEventListener;
 use SimpleBus\AsynchronousBundle\DependencyInjection\Compiler\CollectAsynchronousEventNames;
 use SimpleBus\AsynchronousBundle\DependencyInjection\SimpleBusAsynchronousExtension;
 use SimpleBus\SymfonyBridge\DependencyInjection\AttributeTagResolver;
@@ -30,8 +27,8 @@ class SimpleBusAsynchronousBundle extends Bundle
     public function build(ContainerBuilder $container): void
     {
         $container->registerAttributeForAutoconfiguration(
-            AsAsynchronousMessageHandler::class,
-            static function (ChildDefinition $definition, AsAsynchronousMessageHandler $attribute, Reflector $reflector): void {
+            AsyncCommandHandler::class,
+            static function (ChildDefinition $definition, AsyncCommandHandler $attribute, Reflector $reflector): void {
                 foreach (AttributeTagResolver::resolveTags($reflector, $attribute->handles, $attribute->method, 'handles') as $tag) {
                     $definition->addTag('asynchronous_command_handler', $tag);
                 }
@@ -39,8 +36,8 @@ class SimpleBusAsynchronousBundle extends Bundle
         );
 
         $container->registerAttributeForAutoconfiguration(
-            AsAsynchronousEventSubscriber::class,
-            static function (ChildDefinition $definition, AsAsynchronousEventSubscriber $attribute, Reflector $reflector): void {
+            AsyncEventListener::class,
+            static function (ChildDefinition $definition, AsyncEventListener $attribute, Reflector $reflector): void {
                 foreach (AttributeTagResolver::resolveTags($reflector, $attribute->subscribesTo, $attribute->method, 'subscribes_to') as $tag) {
                     $definition->addTag('asynchronous_event_subscriber', $tag);
                 }

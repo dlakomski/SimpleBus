@@ -4,10 +4,10 @@ namespace SimpleBus\SymfonyBridge\Tests\Functional\SmokeTest\Attributes;
 
 use SimpleBus\SymfonyBridge\Attribute\EventListener;
 
-#[EventListener]
-final class AttributeEventSubscriber
+#[EventListener(method: 'on')]
+final class AttributeUnionEventListenerOn
 {
-    public function __invoke(AttrEvent $event): void
+    public function on(AttrUnionEventC|AttrUnionEventD $event): void
     {
         $event->setHandledBy($this);
     }

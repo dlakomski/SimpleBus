@@ -4,6 +4,12 @@ namespace SimpleBus\AsynchronousBundle\Tests\Functional;
 
 use PHPUnit\Framework\Attributes\Test;
 use SimpleBus\AsynchronousBundle\Tests\Functional\Attribute\AttrAsyncCommand;
+use SimpleBus\AsynchronousBundle\Tests\Functional\Attribute\AttrAsyncCommandA;
+use SimpleBus\AsynchronousBundle\Tests\Functional\Attribute\AttrAsyncCommandB;
+use SimpleBus\AsynchronousBundle\Tests\Functional\Attribute\AttrAsyncCommandC;
+use SimpleBus\AsynchronousBundle\Tests\Functional\Attribute\AttrAsyncCommandD;
+use SimpleBus\AsynchronousBundle\Tests\Functional\Attribute\AttrAsyncCommandE;
+use SimpleBus\AsynchronousBundle\Tests\Functional\Attribute\AttrAsyncCommandF;
 use SimpleBus\AsynchronousBundle\Tests\Functional\Attribute\AttrEvent;
 use SimpleBus\Message\Bus\MessageBus;
 use SimpleBus\Serialization\Envelope\DefaultEnvelope;
@@ -79,6 +85,79 @@ class SimpleBusAsynchronousBundleTest extends KernelTestCase
         /** @var Spy $spy */
         $spy = $kernel->getContainer()->get('spy');
         $this->assertSame([$command], $spy->handled);
+    }
+
+    #[Test]
+    public function itHandlesUnionTypedCommandsInferredFromHandleMethodOnClassAttribute(): void
+    {
+        $kernel = static::createKernel();
+        $kernel->boot();
+
+        $a = new AttrAsyncCommandA();
+        $b = new AttrAsyncCommandB();
+
+        /** @var MessageBus $asynchronousCommandBus */
+        $asynchronousCommandBus = $kernel->getContainer()->get('asynchronous_command_bus');
+        $asynchronousCommandBus->handle($a);
+        $asynchronousCommandBus->handle($b);
+
+        /** @var PublisherSpy $commandPublisher */
+        $commandPublisher = $kernel->getContainer()->get('command_publisher_spy');
+        $this->assertSame([], $commandPublisher->publishedMessages());
+
+        /** @var Spy $spy */
+        $spy = $kernel->getContainer()->get('spy');
+        $this->assertSame([$a, $b], $spy->handled);
+    }
+
+    #[Test]
+    public function itHandlesUnionTypedCommandsWhenMethodIsSpecifiedOnClassAttribute(): void
+    {
+        $kernel = static::createKernel();
+        $kernel->boot();
+
+        $c = new AttrAsyncCommandC();
+        $d = new AttrAsyncCommandD();
+
+        /** @var MessageBus $asynchronousCommandBus */
+        $asynchronousCommandBus = $kernel->getContainer()->get('asynchronous_command_bus');
+        $asynchronousCommandBus->handle($c);
+        $asynchronousCommandBus->handle($d);
+
+        /** @var PublisherSpy $commandPublisher */
+        $commandPublisher = $kernel->getContainer()->get('command_publisher_spy');
+        $this->assertSame([], $commandPublisher->publishedMessages());
+
+        /** @var Spy $spy */
+        $spy = $kernel->getContainer()->get('spy');
+        $this->assertSame([$c, $d], $spy->handled);
+    }
+
+    #[Test]
+    public function itHonorsExplicitHandlesOnClassAttributeEvenWithUnionTypedMethod(): void
+    {
+        $kernel = static::createKernel();
+        $kernel->boot();
+
+        $e = new AttrAsyncCommandE();
+        $f = new AttrAsyncCommandF();
+
+        /** @var MessageBus $asynchronousCommandBus */
+        $asynchronousCommandBus = $kernel->getContainer()->get('asynchronous_command_bus');
+        $asynchronousCommandBus->handle($e);
+
+        // Send unhandled command through the synchronous command bus to be published
+        /** @var MessageBus $commandBus */
+        $commandBus = $kernel->getContainer()->get('command_bus');
+        $commandBus->handle($f);
+
+        /** @var Spy $spy */
+        $spy = $kernel->getContainer()->get('spy');
+        $this->assertSame([$e], $spy->handled, 'Only explicitly handled message should be handled');
+
+        /** @var PublisherSpy $commandPublisher */
+        $commandPublisher = $kernel->getContainer()->get('command_publisher_spy');
+        $this->assertSame([$f], $commandPublisher->publishedMessages(), 'Unhandled union branch should be published');
     }
 
     #[Test]

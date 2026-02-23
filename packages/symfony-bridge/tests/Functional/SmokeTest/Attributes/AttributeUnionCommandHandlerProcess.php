@@ -4,10 +4,10 @@ namespace SimpleBus\SymfonyBridge\Tests\Functional\SmokeTest\Attributes;
 
 use SimpleBus\SymfonyBridge\Attribute\CommandHandler;
 
-#[CommandHandler]
-final class AttributeCommandHandler
+#[CommandHandler(method: 'process')]
+final class AttributeUnionCommandHandlerProcess
 {
-    public function __invoke(AttrCommand $command): void
+    public function process(AttrUnionCommandC|AttrUnionCommandD $command): void
     {
         $command->setHandled(true);
     }

@@ -6,11 +6,11 @@ use SimpleBus\AsynchronousBundle\Attribute\AsyncCommandHandler;
 use SimpleBus\AsynchronousBundle\Tests\Functional\Spy;
 
 #[AsyncCommandHandler(method: 'handle')]
-final class AttributeAsyncCommandHandler
+final class AttributeUnionAsyncCommandHandler
 {
     public function __construct(private Spy $spy) {}
 
-    public function handle(AttrAsyncCommand $command): void
+    public function handle(AttrAsyncCommandA|AttrAsyncCommandB $command): void
     {
         $this->spy->handled[] = $command;
     }
