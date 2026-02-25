@@ -30,7 +30,7 @@
         "php": "^8.2",
         "dlakomski/asynchronous": "^6.4",
         "dlakomski/message-bus": "^6.4",
-        "dlakomski/symfony-bridge": "^6.4",
+        "dlakomski/symfony-bridge": "^6.6",
         "symfony/config": "^6.4.23 || ^7.4.1",
         "symfony/dependency-injection": "^6.4.23 || ^7.4",
         "symfony/framework-bundle": "^6.4.23 || ^7.4"
